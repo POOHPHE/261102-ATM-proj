@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #include<windows.h>
 using namespace std;
-int main(){
+ main(){
 	string A[3]={"text1","text2","text3"};
 	int cursor=0;
 	int coutpos=0;
