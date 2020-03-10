@@ -16,15 +16,15 @@ void print_logo(){
 	cout<<"BANK KKK"<<endl;
 }
 
-string create_pin(){//create pin
-	string pin="";
+string create_otp(){//create otp
+	string otp="";
 	string set[10]={"0","1","2","3","4","5","6","7","8","9"};
 	int cur;
 	for(int i=0;i<6;i++){
 		cur=rand()%10;
-		pin=pin+set[cur];
+		otp=otp+set[cur];
 	}
-	return pin;
+	return otp;
 }
 
 void text_size(int s){//change text size func()
@@ -40,14 +40,17 @@ SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
 
 }
 
-void login(){//Login func()
+void login(){//Login page func()
 	
 }
 
-void regis(){//register func()
+void regis(){//register page func()
 	
 }
 
+void password(){//Enter password page func()
+	
+}
 
 int main(){
 	
