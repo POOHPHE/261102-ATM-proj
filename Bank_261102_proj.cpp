@@ -16,6 +16,17 @@ void print_logo(){
 	cout<<"BANK KKK"<<endl;
 }
 
+string create_pin(){//create pin
+	string pin="";
+	string set[10]={"0","1","2","3","4","5","6","7","8","9"};
+	int cur;
+	for(int i=0;i<6;i++){
+		cur=rand()%10;
+		pin=pin+set[cur];
+	}
+	return pin;
+}
+
 void text_size(int s){//change text size func()
 	CONSOLE_FONT_INFOEX cfi;
 cfi.cbSize = sizeof(cfi);
@@ -39,6 +50,9 @@ void regis(){//register func()
 
 
 int main(){
+	
+	
+	srand(time(0));
 	int end=0;
 	text_size(80);
 	int cursor=0,coutpos=0;
