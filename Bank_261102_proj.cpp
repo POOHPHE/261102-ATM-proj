@@ -2,16 +2,21 @@
 #include<windows.h>
 
 using namespace std;
+
 int Gamespeed = 100;
+
 struct People{
 	string name;
 	string id;
+	string password;
 	long double money;
 };
+
 void print_logo(){
 	cout<<"BANK KKK"<<endl;
 }
-void text_size(int s){
+
+void text_size(int s){//change text size func()
 	CONSOLE_FONT_INFOEX cfi;
 cfi.cbSize = sizeof(cfi);
 cfi.nFont = 0;
@@ -22,14 +27,13 @@ cfi.FontWeight = FW_NORMAL;
 std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
 
-
 }
 
-void login(){
+void login(){//Login func()
 	
 }
 
-void regis(){
+void regis(){//register func()
 	
 }
 
