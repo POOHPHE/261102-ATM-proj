@@ -13,7 +13,7 @@ struct People{
 };
 
 void print_logo(){
-	cout<<"BANK KKK"<<endl;
+	cout<<"CPE BANK"<<endl;
 }
 
 
@@ -31,6 +31,11 @@ void print_login(int w){
 		char a=219;
 		if(w!=0){
 			a=' ';
+		}
+		
+		for(int j=0;j<46;j++){
+			cout<<" ";
+			
 		}
 		if(i==1||i==6){
 			for(int j=0;j<7;j++){
@@ -76,16 +81,20 @@ void print_login(int w){
 void print_regis(int w){
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
 
-		string regis[4]={	" _____  _____  _____  _____  _____  _____  _____  _____ ",
+		/*string regis[4]={	" _____  _____  _____  _____  _____  _____  _____  _____ ",
 							"| __  ||   __||   __||     ||   __||_   _||   __|| __  |",
 							"|    -||   __||  |  ||-   -||__   |  | |  |   __||    -|",
-							"|__|__||_____||_____||_____||_____|  |_|  |_____||__|__|"};
+							"|__|__||_____||_____||_____||_____|  |_|  |_____||__|__|"};*/
 							cout<<endl;
 	for(int i=0;i<4;i++){
 		char a=219;
 		if(w!=1){
 								a=' ';
 							}
+							for(int j=0;j<42;j++){
+			cout<<" ";
+			
+		}
 		if(i==1||i==3){
 				for(int j=0;j<6;j++){
 					cout<<" ";
@@ -109,21 +118,38 @@ void print_regis(int w){
 				cout<<" ";
 			}
 		}
-		cout<<regis[i]<<endl;
+		//cout<<regis[i]<<endl;
+		char e=92;
+		if(i==0){
+			printf("  ___   ___    ___   ___   ___   _____   ___   ___ \n");
+		}
+		if(i==1){
+ 		printf(" | _ %c | __|  / __| |_ _| / __| |_   _| | __| | _ %c\n",e,e);
+ 	}
+ 		if(i==2){
+ 		printf(" |   / | _|  | (_ |  | |  %c__ %c   | |   | _|  |   /\n",e,e);
+ 	}
+ 		if(i==3){
+ 		printf(" |_|_%c |___|  %c___| |___| |___/   |_|   |___| |_|_%c\n",e,e,e);
+ 	}
 	}
 }
 void print_exit(int w){
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
 
-	string exit[4]={	" _____  __ __  _____  _____ ",                            
+	/*string exit[4]={	" _____  __ __  _____  _____ ",                            
 						"|   __||  |  ||     ||_   _|",                           
 						"|   __||-   -||-   -|  | |  ",                            
-						"|_____||__|__||_____|  |_|  ", };
+						"|_____||__|__||_____|  |_|  ", };*/
 	for(int i=0;i<4;i++){
 		char a=219;
 			for(int j=0;j<11;j++){
 					cout<<" ";
 				}
+				for(int j=0;j<45;j++){
+			cout<<" ";
+			
+		}
 		if(w!=2){
 				a=' ';
 							}
@@ -149,20 +175,29 @@ void print_exit(int w){
 			for(int j=0;j<9;j++){
 				cout<<" ";
 			}
-		}
-							
-							
-							
-		cout<<exit[i]<<endl;
+		}char e=92;
+				if(i==0){
+					printf("  ___  __  __  ___   _____ \n");
+				}	
+				if(i==1){
+					printf(" | __| %c %c/ / |_ _| |_   _|\n",e,e);
+				}	
+				if(i==2){
+					printf(" | _|   >  <   | |    | |  \n"); 
+				}	
+				if(i==3){
+					printf(" |___| /_/%c_%c |___|   |_|  \n",e,e);
+				}						
+		//cout<<exit[i]<<endl;
 	}
 }
 
 string create_otp(){//create otp
 	string otp="";
-	string set[10]={"0","1","2","3","4","5","6","7","8","9"};
+	string set[36]={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	int cur;
 	for(int i=0;i<6;i++){
-		cur=rand()%10;
+		cur=rand()%36;
 		otp=otp+set[cur];
 	}
 	return otp;
@@ -195,7 +230,7 @@ int main(){
 	
 	srand(time(0));
 	int end=0;
-	text_size(16);
+	//text_size(16);
 	int cursor=0;
 	string A[3]={"LOGIN","REGISTER","EXIT"};
 	//Main Menu
@@ -212,34 +247,25 @@ int main(){
 				cursor++;
 			}
 		}
-		print_logo();
-	/*	for(int i=0;i<3;i++){//print choice
-			cout<<setw(10);
-			if(cursor==i&&coutpos==1){
-				cout<<"|->";
-			}else if(cursor==i){
-				cout<<"->";
-			}else{
-				cout<<"  ";
-			}
-			cout<<A[i]<<endl;
-		}*/
-		
-		
-		print_login(cursor);
-		print_regis(cursor);
-		print_exit(cursor);
-		
-		
 		if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
 			
 			if(cursor==2){//Exit
-				end=1;
+				break;
 			}
 			
 		}
+		print_logo();
+		print_login(cursor);
+		cout<<endl<<endl;
+		print_regis(cursor);
+		cout<<endl<<endl;
+		print_exit(cursor);
 		
-		Sleep(Gamespeed);
+		
+		
+		
+		//Sleep(Gamespeed);
+		system("pause");
 		system("cls");
 		
 		
