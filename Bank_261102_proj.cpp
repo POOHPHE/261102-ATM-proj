@@ -281,11 +281,7 @@ SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, &cfi);
 }
 
 void login(){//Login page func()
-string acc_no="";
-	
-	
-	
-
+string acc_no="";	
 	while(true){
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
 	system("cls");
@@ -339,9 +335,6 @@ string acc_no="";
 		
 			
 }
-
-
-
 }
 
 void regis(){//register page func()
@@ -353,7 +346,7 @@ void password(){//Enter password page func()
 }
 
 int main(){
-	
+	vector<People> all_customers; 
 	
 	srand(time(0));
 	int end=0;
