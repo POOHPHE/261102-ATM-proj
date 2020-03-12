@@ -12,8 +12,68 @@ struct People{
 	long double money;
 };
 
+void print_number(string s){
+	string num[10][5]={{"   ___  ","  / _ \\ "," | | | |"," | |_| |","  \\___/ "},{"  _ "," / |"," | |"," | |"," |_|"	},	{"  ____  "," |___ \\ ","   __) |","  / __/ "," |_____|"	},
+	{"  _____ "," |___ / ","   |_ \\ ","  ___) |"," |____/ "	},
+	{"  _  _   "," | || |  "," | || |_ "," |__   _|","    |_|  "	},
+	{"  ____  "," | ___| "," |___ \\ ","  ___) |"," |____/ "	},
+	{"   __   ","  / /_  "," | '_ \\ "," | (_) |","  \\___/ "	},
+	{"  _____ "," |___  |","    / / ","   / /  ","  /_/   "	},
+	{"   ___  ","  ( _ ) ","  / _ \\ "," | (_) |","  \\___/ "	},
+	{"   ___  ","  / _ \\ "," | (_) |","  \\__, |","    /_/ "	}};
+
+	for(int i=0;i<5;i++){
+		cout<<"                                                       ";
+		for(int j=0;j<s.size();j++){
+			int k=s[j]-48;
+			cout<<num[k][i];
+			
+		}
+		cout<<endl;
+	}
+}
+
+
 void print_logo(){
-	cout<<"CPE BANK"<<endl;
+	char e=92;
+/*	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+	cout<<endl;*/
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	for(int i=0;i<10;i++){
+		cout<<"\n";
+	}
+	for(int i=0;i<54;i++){
+		cout<<" ";
+	}
+	printf(" _______  _______  _______      ______   _______  _        _ \n");      
+	for(int i=0;i<54;i++){
+		cout<<" ";
+	}
+	printf("(  ____ %c(  ____ )(  ____ %c    (  ___ %c (  ___  )( (    /|| %c    /%c\n",e,e,e,e,e);
+	for(int i=0;i<54;i++){
+		cout<<" ";
+	}
+	printf("| (    %c/| (    )|| (    %c/    | (   ) )| (   ) ||  %c  ( ||  %c  / /\n",e,e,e,e);
+	for(int i=0;i<54;i++){
+		cout<<" ";
+	}
+	printf("| |      | (____)|| (__        | (__/ / | (___) ||   %c | ||  (_/ / \n",e);
+	for(int i=0;i<54;i++){
+		cout<<" ";
+	}
+ 	printf("| |      |  _____)|  __)       |  __ (  |  ___  || (%c %c) ||   _ (  \n",e,e);
+ 	for(int i=0;i<54;i++){
+		cout<<" ";
+	}
+    printf("| |      | (      | (          | (  %c %c | (   ) || | %c   ||  ( %c %c \n",e,e,e,e,e);
+    	for(int i=0;i<54;i++){
+		cout<<" ";
+	}	printf("| (____/%c| )      | (____/%c    | )___) )| )   ( || )  %c  ||  /  %c %c\n",e,e,e,e,e);
+	for(int i=0;i<54;i++){
+		cout<<" ";
+	}printf("(_______/|/       (_______/    |/ %c___/ |/     %c||/    )_)|_/    %c/\n",e,e,e);
+    
+	cout<<endl;cout<<endl;
 }
 
 
@@ -26,8 +86,11 @@ void print_login(int w){
 						"|       ||       ||   |_| ||   | | | |   |"  ,                          
 						"|_______||_______||_______||___| |_|  |__|"  };
 					 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
-	
+	for(int i=0;i<3;i++){
+		cout<<"\n";
+	}
 	for(int i=0;i<7;i++){
+		cout<<"        ";
 		char a=219;
 		if(w!=0){
 			a=' ';
@@ -44,7 +107,7 @@ void print_login(int w){
 			for(int j=0;j<2;j++){
 				cout<<a;
 			}
-			for(int j=0;j<3;j++){
+			for(int j=0;j<5;j++){
 				cout<<" ";
 			}
 		}else if(i==3||i==4){
@@ -54,7 +117,7 @@ void print_login(int w){
 			for(int j=0;j<2;j++){
 				cout<<a;
 			}
-			cout<<" ";
+			cout<<"   ";
 		}else if(i==2||i==5){
 			for(int j=0;j<8;j++){
 				cout<<" ";
@@ -62,11 +125,11 @@ void print_login(int w){
 				for(int j=0;j<2;j++){
 				cout<<a;
 			}
-			for(int j=0;j<2;j++){
+			for(int j=0;j<4;j++){
 				cout<<" ";
 			}
 		}else{
-			for(int j=0;j<12;j++){
+			for(int j=0;j<14;j++){
 				cout<<" ";
 			}
 				
@@ -87,7 +150,7 @@ void print_regis(int w){
 							"|__|__||_____||_____||_____||_____|  |_|  |_____||__|__|"};*/
 							cout<<endl;
 	for(int i=0;i<4;i++){
-		char a=219;
+		char a=219;cout<<"          ";
 		if(w!=1){
 								a=' ';
 							}
@@ -101,7 +164,7 @@ void print_regis(int w){
 				}
 			for(int j=0;j<2;j++){
 				cout<<a;
-			}cout<<" ";
+			}cout<<"   ";
 		
 		}else if(i==2){
 			
@@ -112,11 +175,11 @@ void print_regis(int w){
 				cout<<a;
 			}
 		
-		
+		cout<<"  ";
 		}else{
 			for(int j=0;j<9;j++){
 				cout<<" ";
-			}
+			}cout<<"  ";
 		}
 		//cout<<regis[i]<<endl;
 		char e=92;
@@ -135,13 +198,15 @@ void print_regis(int w){
 	}
 }
 void print_exit(int w){
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),8);
 
 	/*string exit[4]={	" _____  __ __  _____  _____ ",                            
 						"|   __||  |  ||     ||_   _|",                           
 						"|   __||-   -||-   -|  | |  ",                            
 						"|_____||__|__||_____|  |_|  ", };*/
+	cout<<endl;
 	for(int i=0;i<4;i++){
+		cout<<"       ";
 		char a=219;
 			for(int j=0;j<11;j++){
 					cout<<" ";
@@ -159,7 +224,7 @@ void print_exit(int w){
 				}
 			for(int j=0;j<2;j++){
 				cout<<a;
-			}cout<<" ";
+			}cout<<"   ";
 		
 		}else if(i==2){
 			
@@ -169,10 +234,10 @@ void print_exit(int w){
 			for(int j=0;j<2;j++){
 				cout<<a;
 			}
-		
+		cout<<"  ";
 		
 		}else{
-			for(int j=0;j<9;j++){
+			for(int j=0;j<11;j++){
 				cout<<" ";
 			}
 		}char e=92;
@@ -207,14 +272,76 @@ void text_size(int s){//change text size func()
 	CONSOLE_FONT_INFOEX cfi;
 cfi.cbSize = sizeof(cfi);
 cfi.nFont = 0;
+cfi.dwFontSize.X =0;                   // Width of each character in the font
+cfi.dwFontSize.Y = s;
+wcscpy(cfi.FaceName, L"Terminal"); // Choose your font
 
-std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
-SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, &cfi);
 
 }
 
 void login(){//Login page func()
+string acc_no="";
 	
+	
+	
+
+	while(true){
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+	system("cls");
+	printf("\n\n\n                                                    _    ____ ____ ___  _   _ _   _ _____   _   _ _   _ __  __ ____  _____ ____      \n"); 
+	printf("                                                   / \\  / ___/ ___/ _ \\| | | | \\ | |_   _| | \\ | | | | |  \\/  | __ )| ____|  _ \\      \n");
+	printf("                                                  / _ \\| |  | |  | | | | | | |  \\| | | |   |  \\| | | | | |\\/| |  _ \\|  _| | |_) |     \n");
+	printf("                                                 / ___ \\ |__| |__| |_| | |_| | |\\  | | |   | |\\  | |_| | |  | | |_) | |___|  _ <      \n");
+	printf("                                                /_/   \\_\\____\\____\\___/ \\___/|_| \\_| |_|   |_| \\_|\\___/|_|  |_|____/|_____|_| \\_\\      \n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	
+		if(acc_no.size()<9){
+			if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			acc_no=acc_no+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			acc_no=acc_no+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			acc_no=acc_no+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			acc_no=acc_no+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			acc_no=acc_no+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			acc_no=acc_no+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			acc_no=acc_no+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			acc_no=acc_no+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			acc_no=acc_no+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			acc_no=acc_no+"9";
+		}
+		}
+		
+		if(GetAsyncKeyState(VK_BACK) != 0&&acc_no.size()>0){
+			acc_no=acc_no.substr(0,acc_no.size()-1);
+		}
+		cout<<endl;
+		print_number(acc_no);
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		
+			
+}
+
+
+
 }
 
 void regis(){//register page func()
@@ -230,7 +357,7 @@ int main(){
 	
 	srand(time(0));
 	int end=0;
-	//text_size(16);
+	text_size(16);
 	int cursor=0;
 	string A[3]={"LOGIN","REGISTER","EXIT"};
 	//Main Menu
@@ -241,14 +368,16 @@ int main(){
 			if(cursor>0&&cursor<3){
 				cursor--;
 			}
-		}
+		}else
 		if(GetAsyncKeyState(VK_DOWN) != 0){//Down State
 			if(cursor>=0&&cursor<2){
 				cursor++;
 			}
-		}
+		}else
 		if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
-			
+			if(cursor==0){//Login
+			 login();
+			}
 			if(cursor==2){//Exit
 				break;
 			}
@@ -263,7 +392,7 @@ int main(){
 		
 		
 		
-		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 		//Sleep(Gamespeed);
 		system("pause");
 		system("cls");
