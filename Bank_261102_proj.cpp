@@ -4,13 +4,17 @@
 using namespace std;
 
 int Gamespeed = 100;
-
+int cursor=0;
+int end=0;
+string page="main";
 struct People{
-	string name;
 	string id;
-	string password;
+	string name;
+	string pin;
 	long double money;
 };
+vector<People> all_customers; 
+set<string> find_id;
 
 void print_number(string s){
 	string num[10][5]={{"   ___  ","  / _ \\ "," | | | |"," | |_| |","  \\___/ "},{"  _ "," / |"," | |"," | |"," |_|"	},	{"  ____  "," |___ \\ ","   __) |","  / __/ "," |_____|"	},
@@ -279,17 +283,30 @@ wcscpy(cfi.FaceName, L"Terminal"); // Choose your font
 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, &cfi);
 
 }
-
+void find_id_all(string no){
+	
+	if(find_id.count(no)!=0){SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+		printf("\n\n\t\t\t\t\t.___.__..  ..  ..__ \n");
+		printf("\t\t\t\t\t [__ |  ||  ||\\ ||  \\\n");
+		printf("\t\t\t\t\t |   |__||__|| \\||__/\n");
+	}else{SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+		
+		printf("\n\n\t\t\t\t\t     __ .__..  ..  ..__..___.  .___.__..  ..  ..__   .__. __  __ .__..  ..  ..___.  .  .      \n");
+		printf("\t\t\t\t\t    /  `[__]|\\ ||\\ ||  |  |    [__ |  ||  ||\\ ||  \\  [__]/  `/  `|  ||  ||\\ |  |    |\\ | _    \n");
+		printf("\t\t\t\t\t    \\__.|  || \\|| \\||__|  |    |   |__||__|| \\||__/  |  |\\__.\\__.|__||__|| \\|  |    | \\|(_) * \n");
+		
+	}
+}
 void login(){//Login page func()
 string acc_no="";	
 	while(true){
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
 	system("cls");
-	printf("\n\n\n                                                    _    ____ ____ ___  _   _ _   _ _____   _   _ _   _ __  __ ____  _____ ____      \n"); 
+	printf("\n\n\n\n\n\n\n\n\n                                                    _    ____ ____ ___  _   _ _   _ _____   _   _ _   _ __  __ ____  _____ ____      \n"); 
 	printf("                                                   / \\  / ___/ ___/ _ \\| | | | \\ | |_   _| | \\ | | | | |  \\/  | __ )| ____|  _ \\      \n");
 	printf("                                                  / _ \\| |  | |  | | | | | | |  \\| | | |   |  \\| | | | | |\\/| |  _ \\|  _| | |_) |     \n");
 	printf("                                                 / ___ \\ |__| |__| |_| | |_| | |\\  | | |   | |\\  | |_| | |  | | |_) | |___|  _ <      \n");
-	printf("                                                /_/   \\_\\____\\____\\___/ \\___/|_| \\_| |_|   |_| \\_|\\___/|_|  |_|____/|_____|_| \\_\\      \n");
+	printf("                                                /_/   \\_\\____\\____\\___/ \\___/|_| \\_| |_|   |_| \\_|\\___/|_|  |_|____/|_____|_| \\_\\      \n\n\n");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
 	
 		if(acc_no.size()<9){
@@ -330,9 +347,23 @@ string acc_no="";
 		}
 		cout<<endl;
 		print_number(acc_no);
+		if(GetAsyncKeyState(VK_RETURN) != 0){
+			find_id_all(acc_no);
+		}else{
+			cout<<"\n\n";
+		}
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 		system("pause");
-		
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="main";
+			break;
+		}
 			
 }
 }
@@ -344,20 +375,11 @@ void regis(){//register page func()
 void password(){//Enter password page func()
 	
 }
-
-int main(){
-	vector<People> all_customers; 
+void main_menu(){
+	while(true){
+		
 	
-	srand(time(0));
-	int end=0;
-	text_size(16);
-	int cursor=0;
-	string A[3]={"LOGIN","REGISTER","EXIT"};
-	//Main Menu
-	while(end!=1){
-		
-		
-		if(GetAsyncKeyState(VK_UP) != 0){//Up State
+	if(GetAsyncKeyState(VK_UP) != 0){//Up State
 			if(cursor>0&&cursor<3){
 				cursor--;
 			}
@@ -369,9 +391,11 @@ int main(){
 		}else
 		if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
 			if(cursor==0){//Login
-			 login();
+			 ::page="login";
+			 break;
 			}
 			if(cursor==2){//Exit
+			::end=1;
 				break;
 			}
 			
@@ -386,14 +410,56 @@ int main(){
 		
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
-		//Sleep(Gamespeed);
 		system("pause");
-		system("cls");
 		
+		system("cls");
+		}
+}
+int main(){srand(time(0));
+	ifstream in("test_data.txt");
+	string textline;
+	
+	
+	
+	text_size(16);
+	
+	string A[3]={"LOGIN","REGISTER","EXIT"};
+	//Main Menu
+	while(getline(in,textline)){
+		
+		string a,b,c;
+		a=textline.substr(0,9);
+		int find=textline.find_first_of(",",10);
+		b=textline.substr(10,find-10);
+		c=textline.substr(find+1,6);
+		string mon=textline.substr(find+8,textline.size()-(find+7));
+		long double mone=strtold(mon.c_str(),NULL);
+		People input={a,b,c,mone};
+		all_customers.push_back(input);
+		find_id.insert(a);
+	}in.close();
+	
+	while(::end!=1){
+		if(page=="main"){
+			main_menu();
+		}else if(page=="login"){
+			login();
+		}
+		
+		
+		//Sleep(Gamespeed);
+		
+		
+		system("cls");
 		
 		
 		
 	}
 	
+	ofstream out("test_data.txt");
+	for(int i=0;i<all_customers.size();i++){
+		out<<all_customers[i].id<<","<<all_customers[i].name<<","<<all_customers[i].pin<<","<<all_customers[i].money<<endl;
+	}
+	out.close();
 	
 }
