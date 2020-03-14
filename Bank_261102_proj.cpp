@@ -15,7 +15,7 @@ struct People{
 };
 vector<People> all_customers;  
 set<string> find_id;
-
+int num;
 
 
 
@@ -29,8 +29,33 @@ string create_otp(){//create otp
 	}
 	return otp;
 }
+void print_money(string s,string space){
+	string text[11][4]={	{"  __  ",  " /  \\ ",  "| () |",  " \\__/ "},//0
+	{" _ ", 	"/ |", 	"| |", 	"|_|"	},//1
+	{" ___ ", "|_  )", " / / ", "/___|"	},//2
+	{" ____", "|__ /", " |_ \\", "|___/"	},//3
+	{" _ _  "   , "| | | " , "|_  _|", "  |_| " 	},//4
+	{" ___ ", "| __|", "|__ \\", "|___/"	},//5
+	{"  __ "  , " / / ", "/ _ \\", "\\___/"	},//6
+	{ " ____ " , "|__  |", "  / / ", " /_/  " 	},//7
+	{" ___ ", "( _ )", "/ _ \\", "\\___/"	},//8
+	{ " ___ " , "/ _ \\", "\\_, /", " /_/ "	},//9
+	{"   "	,  "   " ,  " _ ",  "(_)"}//.
+	};
+
+	for(int i=0;i<4;i++){
+ 			cout<<space;
+ 			for(int j=0;j<s.size();j++){
+ 				int index=s[j]-48;
+ 				if(s[j]=='.'){
+ 					index=10;
+				 }
+ 				cout<<text[index][i];
+			 }cout<<endl;
+		 }
+}
 void print_text(string s,string space){
-	string text_char[36][5]={
+	string text_char[37][5]={
 							{"   ___  ","  / _ \\ "," | |_| |"," | |_| |","  \\___/ "},//0
 							{"  _ "," / |"," | |"," | |"," |_|"	},	//1
 							{"  ____  "," |___ \\ ","   __) |","  / __/ "," |_____|"	},//2
@@ -66,7 +91,8 @@ void print_text(string s,string space){
  							{"__        __", "\\ \\      / /", " \\ \\ /\\ / / ", "  \\ V  V /  ", "   \\_/\\_/   "},//w
  							{"__  __", "\\ \\/ /", " \\  / ", " /  \\ ", "/_/\\_\\"},//x
  							{"__   __", "\\ \\ / /", " \\ V / ", "  | |  ", "  |_|  "},//y
- 							{" _____", "|__  /", "  / / ", " / /_ ", "/____|"}//z
+ 							{" _____", "|__  /", "  / / ", " / /_ ", "/____|"},//z
+ 							{			"   ", "   "  ,  "   ", " _ " ,"(_)"				 }//. 
  							};
  		for(int i=0;i<5;i++){
  			cout<<space;
@@ -74,6 +100,9 @@ void print_text(string s,string space){
  				int index=s[j]-55;
  				if(s[j]>=48&&s[j]<=57){
  					index=s[j]-48;
+				 }
+				 if(s[j]=='.'){
+				 	index=36;
 				 }
  				cout<<text_char[index][i]<<" ";
 			 }cout<<endl;
@@ -273,7 +302,7 @@ void otp_page(){
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
 		printf("\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
-		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");//cout<<page;
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
 		
 		
@@ -286,6 +315,7 @@ void otp_page(){
 		if(GetAsyncKeyState(VK_RETURN) != 0){
 			if(s==otp){
 				::page="profile";
+				break;
 			}else{
 				wrong=1;
 			}
@@ -294,7 +324,153 @@ void otp_page(){
 	}
 	
 }
+void deposit(){
+	
+}
+void withdraw(){
+	
+}
+void transfer(){
+	
+}
 
+void print_deposit(int w){
+	char a=219;
+	cout<<"     ____  _____ _____ _____ _____ _____ _____ "<<endl;
+	for(int i=0;i<2;i++){
+		if(w==0){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"|    \\|   __|  _  |     |   __|     |_   _|"<<endl;
+	cout<<" ";
+	for(int i=0;i<2;i++){
+		if(w==0){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<" ";
+	cout<<"|  |  |   __|   __|  |  |__   |-   -| | |  "<<endl;
+	for(int i=0;i<2;i++){
+		if(w==0){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"|____/|_____|__|  |_____|_____|_____| |_|  "<<endl;
+}
+void print_withdraw(int w){
+	char a=219;
+	cout<<"     _ _ _ _____ _____ _____ ____  _____ _____ _ _ _ "<<endl;
+	for(int i=0;i<2;i++){
+		if(w==1){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"| | | |     |_   _|  |  |    \\| __  |  _  | | | |"<<endl;
+	cout<<" ";
+	for(int i=0;i<2;i++){
+		if(w==1){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<" ";
+	cout<<"| | | |-   -| | | |     |  |  |    -|     | | | |"<<endl;
+	for(int i=0;i<2;i++){
+		if(w==1){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"|_____|_____| |_| |__|__|____/|__|__|__|__|_____|"<<endl;
+}
+void print_transfer(int w){
+	char a=219;
+	cout<<"     _____ _____ _____ _____ _____ _____ _____ _____ "<<endl;
+	for(int i=0;i<2;i++){
+		if(w==2){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"|_   _| __  |  _  |   | |   __|   __|   __| __  |"<<endl;
+	cout<<" ";
+	for(int i=0;i<2;i++){
+		if(w==2){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<" ";
+	cout<<"  | | |    -|     | | | |__   |   __|   __|    -|"<<endl;
+	for(int i=0;i<2;i++){
+		if(w==2){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"  |_| |__|__|__|__|_|___|_____|__|  |_____|__|__|"<<endl;
+}
+
+
+void profile(){
+	int pro_cur=0;
+	
+	while(true){SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		print_text("PROFILE","\t\t\t\t\t\t\t\t  ");
+	cout<<"\n\n";
+	string s=to_string(all_customers[::num].money);
+	print_money(s,"\t");
+	
+		
+	
+	if(GetAsyncKeyState(VK_UP) != 0){//Up State
+			if(pro_cur>0&&pro_cur<3){
+				pro_cur--;
+			}
+		}else if(GetAsyncKeyState(VK_DOWN) != 0){//Down State
+			if(pro_cur>=0&&pro_cur<2){
+				pro_cur++;
+			}
+		}else	if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
+			if(pro_cur==0){//Login
+			 ::page="deposit";
+			 break;
+			}else if(pro_cur==1){
+			::page="withdraw";
+		}
+			else if(pro_cur==2){//Exit
+			::page="transfer";
+				break;
+			}
+			
+		}
+		print_deposit(pro_cur);
+		print_withdraw(pro_cur);
+		print_transfer(pro_cur);
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		
+		system("cls");
+		
+	
+	}
+	
+	
+	
+	
+}
 void print_login(int w){
 	string login[7]={  	" ___      _______  _______  ___   __    _ ",                             
 						"|   |    |       ||       ||   | |  |  | |"   ,                        
@@ -548,6 +724,11 @@ string acc_no="";
 		if(GetAsyncKeyState(VK_RETURN) != 0){
 			find_id_all(acc_no);
 			if(page=="otp"){
+				for(int i=0;i<all_customers.size();i++){
+					if(acc_no==all_customers[i].id){
+						::num=i;
+					}
+				}
 				break;
 			}
 		}else{
@@ -647,6 +828,14 @@ int main(){srand(time(0));
 			login();
 		}else if(page=="otp"){
 			otp_page();
+		}else if(page=="profile"){
+			profile();
+		}else if(page=="deposit"){
+			deposit();
+		}else if(page=="withdraw"){
+			withdraw();
+		}else if(page=="transfer"){
+			transfer();
 		}
 		
 		
