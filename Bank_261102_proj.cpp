@@ -659,14 +659,25 @@ void transfer(){
 	
 		if(GetAsyncKeyState(VK_RETURN) != 0){
 			find_id_all(acc_no,"pin");
-			if(page=="pin"){
+			if(::page=="pin"){
 				for(int i=0;i<all_customers.size();i++){
 					if(acc_no==all_customers[i].id){
 						::num_transfer=i;
 					}
 				}
-				break;
+				if(all_customers[::num_transfer].id==all_customers[::num].id){
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+		::page="transfer";
+		printf("\n\n\t\t\t\t\t     __ .__..  ..  ..__..___.  .___.__..  ..  ..__   .__. __  __ .__..  ..  ..___.  .  .      \n");
+		printf("\t\t\t\t\t    /  `[__]|\\ ||\\ ||  |  |    [__ |  ||  ||\\ ||  \\  [__]/  `/  `|  ||  ||\\ |  |    |\\ | _    \n");
+		printf("\t\t\t\t\t    \\__.|  || \\|| \\||__|  |    |   |__||__|| \\||__/  |  |\\__.\\__.|__||__|| \\|  |    | \\|(_) * \n");
+				}else{
+					break;
+				}
+				
 			}
+		}else{
+			cout<<"\n\n\n";
 		}
 		
 	
