@@ -15,10 +15,10 @@ struct People{
 };
 vector<People> all_customers;  
 set<string> find_id;
-int num;
+int num,num_transfer,state;
+long double pin_mon;
 
-
-
+void find_id_all(string,string);
 string create_otp(){//create otp
 	string otp="";
 	string set[36]={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
@@ -29,6 +29,7 @@ string create_otp(){//create otp
 	}
 	return otp;
 }
+
 void print_money(string s,string space){
 	string text[11][4]={	{"  __  ",  " /  \\ ",  "| () |",  " \\__/ "},//0
 	{" _ ", 	"/ |", 	"| |", 	"|_|"	},//1
@@ -44,7 +45,7 @@ void print_money(string s,string space){
 	};
 
 	for(int i=0;i<4;i++){
- 			cout<<space;
+ 			cout<<space<<" ";
  			for(int j=0;j<s.size();j++){
  				int index=s[j]-48;
  				if(s[j]=='.'){
@@ -55,7 +56,7 @@ void print_money(string s,string space){
 		 }
 }
 void print_text(string s,string space){
-	string text_char[37][5]={
+	string text_char[38][5]={
 							{"   ___  ","  / _ \\ "," | |_| |"," | |_| |","  \\___/ "},//0
 							{"  _ "," / |"," | |"," | |"," |_|"	},	//1
 							{"  ____  "," |___ \\ ","   __) |","  / __/ "," |_____|"	},//2
@@ -92,7 +93,8 @@ void print_text(string s,string space){
  							{"__  __", "\\ \\/ /", " \\  / ", " /  \\ ", "/_/\\_\\"},//x
  							{"__   __", "\\ \\ / /", " \\ V / ", "  | |  ", "  |_|  "},//y
  							{" _____", "|__  /", "  / / ", " / /_ ", "/____|"},//z
- 							{			"   ", "   "  ,  "   ", " _ " ,"(_)"				 }//. 
+ 							{			"   ", "   "  ,  "   ", " _ " ,"(_)"				 },//. 
+ 							{"   ",	"   ","   ","   ","   "	 }//space
  							};
  		for(int i=0;i<5;i++){
  			cout<<space;
@@ -103,6 +105,9 @@ void print_text(string s,string space){
 				 }
 				 if(s[j]=='.'){
 				 	index=36;
+				 }
+				 if(s[j]==' '){
+				 	index=37;
 				 }
  				cout<<text_char[index][i]<<" ";
 			 }cout<<endl;
@@ -289,7 +294,7 @@ void otp_page(){
 		}cout<<"\n\n\n\n";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
 		
-		print_text(s,"\t\t\t\t\t\t\t ");
+		print_text(s,"\t\t\t\t\t\t\t  ");
 		if(wrong==1){
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
 			wrong_pass();
@@ -324,14 +329,449 @@ void otp_page(){
 	}
 	
 }
-void deposit(){
+void pin_state(){
 	
+	string s="";
+	
+		int wrong=0;
+	
+	while(true){
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		print_text("ENTER PIN","\t\t\t\t\t");
+		
+		
+		if(s.size()<6){
+		if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			s=s+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			s=s+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			s=s+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			s=s+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			s=s+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			s=s+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			s=s+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			s=s+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			s=s+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			s=s+"9";
+		}
+		}
+		if(GetAsyncKeyState(VK_BACK) != 0){
+			s=s.substr(0,s.size()-1);
+		}cout<<"\n\n\n\n";
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+		
+		print_text(s,"\t\t\t\t\t\t\t  ");
+		if(wrong==1){
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+			wrong_pass();
+			wrong=0;
+		}else{
+			cout<<"\n\n\n";
+		}
+		
+		
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="profile";
+			break;
+		}
+		if(GetAsyncKeyState(VK_RETURN) != 0){
+			if(s==all_customers[::num].pin){
+				if(state==0){
+					all_customers[::num].money+=pin_mon;
+				}else if(state==1){
+					all_customers[::num].money-=pin_mon;
+				}else{
+					all_customers[::num_transfer].money+=pin_mon;
+					all_customers[::num].money-=pin_mon;
+				}
+				::page="profile";
+				break;
+			}else{
+				wrong=1;
+			}
+			
+		}
+		system("cls");
+	}
+	
+	
+	
+		
+		
+		
 }
-void withdraw(){
+void deposit(){string s="";
+	while(true){
+		
+	system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+	cout<<"########  ######## ########   #######   ######  #### ######## "<<endl;
+	cout<<"##     ## ##       ##     ## ##     ## ##    ##  ##     ##    "<<endl;
+	cout<<"##     ## ##       ##     ## ##     ## ##        ##     ##    "<<endl;
+	cout<<"##     ## ######   ########  ##     ##  ######   ##     ##    "<<endl;
+	cout<<"##     ## ##       ##        ##     ##       ##  ##     ##    "<<endl;
+	cout<<"##     ## ##       ##        ##     ## ##    ##  ##     ##    "<<endl;
+	cout<<"########  ######## ##         #######   ######  ####    ##    "<<endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+	print_text("ENTER AMOUNT OF MONEY","\t");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	if(s.size()<7){
+		if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			s=s+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			s=s+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			s=s+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			s=s+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			s=s+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			s=s+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			s=s+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			s=s+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			s=s+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			s=s+"9";
+		}
+		}
+		if(GetAsyncKeyState(VK_BACK) != 0){
+			s=s.substr(0,s.size()-1);
+		}cout<<"\n\n\n\n";
+			
+		
+	print_money(s,"\t\t\t\t\t\t\t\t");
 	
+		if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
+			pin_mon=strtold(s.c_str(),NULL);
+			/*if(pin_mon>all_customers[num].money){
+				
+			}else{
+				cout<<".  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
+				cout<<"|\\ ||  |  |    [__ |\\ ||  ||  |[ __|__|  |\\/||  ||\\ |[__  \\./ "<<endl;
+				cout<<"| \\||__|  |    [___| \\||__||__|[_./|  |  |  ||__|| \\|[___  |  "<<endl;
+				
+				
+				break;
+			}*/
+			::page="pin";
+			state=0;
+			break;
+		}
+	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
+		
+		
+
+
+
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="profile";
+			break;
+		}
+	
+	}
+}
+void withdraw(){string s="";
+	while(true){system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+	
+	cout<<"##      ## #### ######## ##     ## ########  ########     ###    ##      ## "<<endl;
+	cout<<"##  ##  ##  ##     ##    ##     ## ##     ## ##     ##   ## ##   ##  ##  ## "<<endl;
+	cout<<"##  ##  ##  ##     ##    ##     ## ##     ## ##     ##  ##   ##  ##  ##  ## "<<endl;
+	cout<<"##  ##  ##  ##     ##    ######### ##     ## ########  ##     ## ##  ##  ## "<<endl;
+	cout<<"##  ##  ##  ##     ##    ##     ## ##     ## ##   ##   ######### ##  ##  ## "<<endl;
+	cout<<"##  ##  ##  ##     ##    ##     ## ##     ## ##    ##  ##     ## ##  ##  ## "<<endl;
+	cout<<" ###  ###  ####    ##    ##     ## ########  ##     ## ##     ##  ###  ###  "<<endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+	print_text("ENTER AMOUNT OF MONEY","\t");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	if(s.size()<7){
+		if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			s=s+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			s=s+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			s=s+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			s=s+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			s=s+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			s=s+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			s=s+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			s=s+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			s=s+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			s=s+"9";
+		}
+		}
+		if(GetAsyncKeyState(VK_BACK) != 0){
+			s=s.substr(0,s.size()-1);
+		}cout<<"\n\n\n\n";
+			
+		
+	print_money(s,"\t\t\t\t\t\t\t\t");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+		if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
+			pin_mon=strtold(s.c_str(),NULL);
+			if(pin_mon<all_customers[::num].money){
+				::page="pin";
+			state=1;
+			break;
+			}else{
+				cout<<".  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
+				cout<<"|\\ ||  |  |    [__ |\\ ||  ||  |[ __|__|  |\\/||  ||\\ |[__  \\./ "<<endl;
+				cout<<"| \\||__|  |    [___| \\||__||__|[_./|  |  |  ||__|| \\|[___  |  "<<endl;
+				
+				
+				
+			}
+			
+			
+		}else{
+			cout<<"\n\n\n";
+		}
+	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
+		
+		
+
+
+
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="profile";
+			break;
+		}
+}
 }
 void transfer(){
+	string s="",acc_no="";
+	while(true){system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+	cout<<"######## ########     ###    ##    ##  ######  ######## ######## ########  "<<endl;
+	cout<<"   ##    ##     ##   ## ##   ###   ## ##    ## ##       ##       ##     ## "<<endl;
+	cout<<"   ##    ##     ##  ##   ##  ####  ## ##       ##       ##       ##     ## "<<endl;
+	cout<<"   ##    ########  ##     ## ## ## ##  ######  ######   ######   ########  "<<endl;
+	cout<<"   ##    ##   ##   ######### ##  ####       ## ##       ##       ##   ##   "<<endl;
+	cout<<"   ##    ##    ##  ##     ## ##   ### ##    ## ##       ##       ##    ##  "<<endl;
+	cout<<"   ##    ##     ## ##     ## ##    ##  ######  ##       ######## ##     ## "<<endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+	print_text("ENTER PAYEE ACC. NO.","\t");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	if(acc_no.size()<9){
+			if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			acc_no=acc_no+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			acc_no=acc_no+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			acc_no=acc_no+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			acc_no=acc_no+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			acc_no=acc_no+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			acc_no=acc_no+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			acc_no=acc_no+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			acc_no=acc_no+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			acc_no=acc_no+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			acc_no=acc_no+"9";
+		}
+		}
+		if(GetAsyncKeyState(VK_BACK) != 0&&acc_no.size()>0){
+			acc_no=acc_no.substr(0,acc_no.size()-1);
+		}
+		cout<<endl;
+		print_text(acc_no,"\t\t\t\t\t\t  ");
 	
+		if(GetAsyncKeyState(VK_RETURN) != 0){
+			find_id_all(acc_no,"pin");
+			if(page=="pin"){
+				for(int i=0;i<all_customers.size();i++){
+					if(acc_no==all_customers[i].id){
+						::num_transfer=i;
+					}
+				}
+				break;
+			}
+		}
+		
+	
+	
+	
+	
+	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="profile";
+			break;
+		}
+	}
+	while(::page=="pin"){system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+	cout<<"######## ########     ###    ##    ##  ######  ######## ######## ########  "<<endl;
+	cout<<"   ##    ##     ##   ## ##   ###   ## ##    ## ##       ##       ##     ## "<<endl;
+	cout<<"   ##    ##     ##  ##   ##  ####  ## ##       ##       ##       ##     ## "<<endl;
+	cout<<"   ##    ########  ##     ## ## ## ##  ######  ######   ######   ########  "<<endl;
+	cout<<"   ##    ##   ##   ######### ##  ####       ## ##       ##       ##   ##   "<<endl;
+	cout<<"   ##    ##    ##  ##     ## ##   ### ##    ## ##       ##       ##    ##  "<<endl;
+	cout<<"   ##    ##     ## ##     ## ##    ##  ######  ##       ######## ##     ## "<<endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+			print_text("ENTER AMOUNT OF MONEY","\t");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	if(s.size()<7){
+		if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			s=s+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			s=s+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			s=s+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			s=s+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			s=s+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			s=s+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			s=s+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			s=s+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			s=s+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			s=s+"9";
+		}
+		}
+		if(GetAsyncKeyState(VK_BACK) != 0){
+			s=s.substr(0,s.size()-1);
+		}cout<<"\n\n\n\n";
+			
+		
+	print_money(s,"\t\t\t\t\t\t\t\t");
+	
+		if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
+			pin_mon=strtold(s.c_str(),NULL);
+			if(pin_mon<all_customers[::num].money){
+				::page="pin";
+			state=3;
+			break;
+			}else{
+				cout<<".  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
+				cout<<"|\\ ||  |  |    [__ |\\ ||  ||  |[ __|__|  |\\/||  ||\\ |[__  \\./ "<<endl;
+				cout<<"| \\||__|  |    [___| \\||__||__|[_./|  |  |  ||__|| \\|[___  |  "<<endl;
+				
+				
+				
+			}
+			
+			
+		}else{
+			cout<<"\n\n\n";
+		}
+		
+		
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="transfer";
+			break;
+		}
+	}
 }
 
 void print_deposit(int w){
@@ -426,11 +866,14 @@ void print_transfer(int w){
 void profile(){
 	int pro_cur=0;
 	
-	while(true){SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+	while(true){system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
 		print_text("PROFILE","\t\t\t\t\t\t\t\t  ");
 	cout<<"\n\n";
 	string s=to_string(all_customers[::num].money);
-	print_money(s,"\t");
+	
+		
+	print_money(s,"\t\t\t\t\t\t\t\t");
 	
 		
 	
@@ -448,6 +891,7 @@ void profile(){
 			 break;
 			}else if(pro_cur==1){
 			::page="withdraw";
+			break;
 		}
 			else if(pro_cur==2){//Exit
 			::page="transfer";
@@ -460,10 +904,21 @@ void profile(){
 		print_transfer(pro_cur);
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .   .__..__   .__..  ..___.\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  |   |  |[ __  |  ||  |  | \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |___|__|[_./  |__||__|  |  \n");
+		
+		
+ 
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 		system("pause");
-		
-		system("cls");
-		
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="main";
+			break;
+		}
 	
 	}
 	
@@ -656,13 +1111,10 @@ wcscpy(cfi.FaceName, L"Terminal"); // Choose your font
 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), 0, &cfi);
 
 }
-void find_id_all(string no){
+void find_id_all(string no,string w){
 	
-	if(find_id.count(no)!=0){SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
-		printf("\n\n\t\t\t\t\t.___.__..  ..  ..__ \n");
-		printf("\t\t\t\t\t [__ |  ||  ||\\ ||  \\\n");
-		printf("\t\t\t\t\t |   |__||__|| \\||__/\n");
-		::page="otp";
+	if(find_id.count(no)!=0){
+		::page=w;
 	}else{SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
 		
 		printf("\n\n\t\t\t\t\t     __ .__..  ..  ..__..___.  .___.__..  ..  ..__   .__. __  __ .__..  ..  ..___.  .  .      \n");
@@ -722,7 +1174,7 @@ string acc_no="";
 		cout<<endl;
 		print_text(acc_no,"\t\t\t\t\t\t  ");
 		if(GetAsyncKeyState(VK_RETURN) != 0){
-			find_id_all(acc_no);
+			find_id_all(acc_no,"otp");
 			if(page=="otp"){
 				for(int i=0;i<all_customers.size();i++){
 					if(acc_no==all_customers[i].id){
@@ -836,16 +1288,11 @@ int main(){srand(time(0));
 			withdraw();
 		}else if(page=="transfer"){
 			transfer();
+		}else if(page=="pin"){
+			pin_state();
 		}
-		
-		
-		//Sleep(Gamespeed);
-		
-		
-		system("cls");
-		
-		
-		
+
+		system("cls");		
 	}
 	
 	ofstream out("test_data.txt");
