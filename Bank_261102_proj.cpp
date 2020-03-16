@@ -13,11 +13,17 @@ struct People{
 	string pin;
 	long double money;
 };
+string file_name="bank_data.txt";
 vector<People> all_customers;  
 set<string> find_id;
 int num,num_transfer,state;
 long double pin_mon;
-
+void update_data(){
+	ofstream out(file_name);
+	for(int i=0;i<all_customers.size();i++){
+		out<<all_customers[i].id<<","<<all_customers[i].name<<","<<all_customers[i].pin<<","<<all_customers[i].money<<endl;
+	}
+}
 void find_id_all(string,string);
 string create_otp(){//create otp
 	string otp="";
@@ -55,7 +61,72 @@ void print_money(string s,string space){
 			 }cout<<endl;
 		 }
 }
+void print_text_small(string s,string space){
+	for(int i=0;i<s.size();i++){
+		s[i]=toupper(s[i]);
+	}  
+
+	string text_char[38][3]={
+							{" __ ","/  \\","\\__/"},//0
+							{"   "," /|","  |"},	//1
+							{" __ ","  _)"," /__"},//2
+							{" __ ","  _)"," __)"},//3
+							{"    "," |__|","   |"},//4
+							{" __ "," |_ "," __)"},//5
+							{" __ ","/__ ","\\__)"	},//6
+							{" ___","   /","  / "},//7
+							{" __ ","(__)","(__)"},//8
+							{" __ ","(__\\"," __/"},//9
+							{"    "," /\\ ","/--\\"},//a
+ 							{" __ ","|__)","|__)"},//b
+ 							{" __","/  ","\\__"},//c
+ 							{" __ ","|  \\","|__/"},//d
+ 							{" __","|_ ","|__"},//e
+ 							{" __","|_ ","|  "},//f
+ 							{" __ ","/ _ ","\\__)"},//g
+ 							{"    ","|__|","|  |"},//h
+ 							{"  ","| ","| "},//i
+ 							{"   ","  |","__)"},//j
+ 							{"   ","|_/","| \\"},//k
+ 							{"   ","|  ","|__"},//l
+ 							{"    ","|\\/|","|  |"},//m
+ 							{"    ","|\\ |","| \\|"},//n
+ 							{" __ ","/  \\","\\__/"},//o
+ 							{" __ ","|__)","|   "},//p
+ 							{" __ ","/  \\","\\_\\/"},//q
+ 							{" __ ","|__)","| \\ "},//r
+ 							{" __ ","(_  ","__) "},//s
+ 							{"___"," | "," | "},//t
+ 							{"    ","/  \\","\\__/"},//u
+ 							{"    ","\\  /"," \\/ "},//v
+ 							{"    ","|  |","|/\\|"},//w    
+ 							{"   ","\\_/","/ \\"},//x    
+ 							{"   ","\\_/"," | "},//y     
+ 							{"___"," _/","/__"},//z 
+ 							{" ", " "  ,  "."},//. 
+ 							{"  ",	"  ","  "}//space
+ 							};
+ 		for(int i=0;i<3;i++){
+ 			cout<<space;
+ 			for(int j=0;j<s.size();j++){
+ 				int index=s[j]-55;
+ 				if(s[j]>=48&&s[j]<=57){
+ 					index=s[j]-48;
+				 }
+				 if(s[j]=='.'){
+				 	index=36;
+				 }
+				 if(s[j]==' '){
+				 	index=37;
+				 }
+ 				cout<<text_char[index][i]<<" ";
+			 }cout<<endl;
+		 }
+}
 void print_text(string s,string space){
+	for(int i=0;i<s.size();i++){
+		s[i]=toupper(s[i]);
+	}
 	string text_char[38][5]={
 							{"   ___  ","  / _ \\ "," | |_| |"," | |_| |","  \\___/ "},//0
 							{"  _ "," / |"," | |"," | |"," |_|"	},	//1
@@ -335,9 +406,9 @@ void pin_state(){
 	
 		int wrong=0;
 	
-	while(true){
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
-		print_text("ENTER PIN","\t\t\t\t\t");
+	while(true){cout<<endl<<endl<<endl<<endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+		print_text("ENTER PIN","\t\t\t\t\t\t\t");
 		
 		
 		if(s.size()<6){
@@ -374,7 +445,7 @@ void pin_state(){
 		}
 		if(GetAsyncKeyState(VK_BACK) != 0){
 			s=s.substr(0,s.size()-1);
-		}cout<<"\n\n\n\n";
+		}cout<<"\n\n\n\n\n\n";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
 		
 		print_text(s,"\t\t\t\t\t\t\t  ");
@@ -385,9 +456,9 @@ void pin_state(){
 		}else{
 			cout<<"\n\n\n";
 		}
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
 		
-		
-		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
 		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
 		
@@ -419,7 +490,7 @@ void pin_state(){
 	}
 	
 	
-	
+	update_data();
 		
 		
 		
@@ -428,14 +499,14 @@ void deposit(){string s="";
 	while(true){
 		
 	system("cls");
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
-	cout<<"########  ######## ########   #######   ######  #### ######## "<<endl;
-	cout<<"##     ## ##       ##     ## ##     ## ##    ##  ##     ##    "<<endl;
-	cout<<"##     ## ##       ##     ## ##     ## ##        ##     ##    "<<endl;
-	cout<<"##     ## ######   ########  ##     ##  ######   ##     ##    "<<endl;
-	cout<<"##     ## ##       ##        ##     ##       ##  ##     ##    "<<endl;
-	cout<<"##     ## ##       ##        ##     ## ##    ##  ##     ##    "<<endl;
-	cout<<"########  ######## ##         #######   ######  ####    ##    "<<endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);cout<<"\n\n";
+	cout<<"\t\t\t\t\t\t\t########  ######## ########   #######   ######  #### ######## "<<endl;
+	cout<<"\t\t\t\t\t\t\t##     ## ##       ##     ## ##     ## ##    ##  ##     ##    "<<endl;
+	cout<<"\t\t\t\t\t\t\t##     ## ##       ##     ## ##     ## ##        ##     ##    "<<endl;
+	cout<<"\t\t\t\t\t\t\t##     ## ######   ########  ##     ##  ######   ##     ##    "<<endl;
+	cout<<"\t\t\t\t\t\t\t##     ## ##       ##        ##     ##       ##  ##     ##    "<<endl;
+	cout<<"\t\t\t\t\t\t\t##     ## ##       ##        ##     ## ##    ##  ##     ##    "<<endl;
+	cout<<"\t\t\t\t\t\t\t########  ######## ##         #######   ######  ####    ##    "<<endl<<endl<<endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
 	print_text("ENTER AMOUNT OF MONEY","\t");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
@@ -469,6 +540,9 @@ void deposit(){string s="";
 		}else
 		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
 			s=s+"9";
+		}else if(GetAsyncKeyState(0x6E)){
+			
+			s=s+".";
 		}
 		}
 		if(GetAsyncKeyState(VK_BACK) != 0){
@@ -496,7 +570,7 @@ void deposit(){string s="";
 		}
 	
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
-		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
 		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
 		
@@ -515,16 +589,16 @@ void deposit(){string s="";
 	}
 }
 void withdraw(){string s="";
-	while(true){system("cls");
+	while(true){system("cls");cout<<"\n\n";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
 	
-	cout<<"##      ## #### ######## ##     ## ########  ########     ###    ##      ## "<<endl;
-	cout<<"##  ##  ##  ##     ##    ##     ## ##     ## ##     ##   ## ##   ##  ##  ## "<<endl;
-	cout<<"##  ##  ##  ##     ##    ##     ## ##     ## ##     ##  ##   ##  ##  ##  ## "<<endl;
-	cout<<"##  ##  ##  ##     ##    ######### ##     ## ########  ##     ## ##  ##  ## "<<endl;
-	cout<<"##  ##  ##  ##     ##    ##     ## ##     ## ##   ##   ######### ##  ##  ## "<<endl;
-	cout<<"##  ##  ##  ##     ##    ##     ## ##     ## ##    ##  ##     ## ##  ##  ## "<<endl;
-	cout<<" ###  ###  ####    ##    ##     ## ########  ##     ## ##     ##  ###  ###  "<<endl;
+	cout<<"\t\t\t\t\t\t\t##      ## #### ######## ##     ## ########  ########     ###    ##      ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t##  ##  ##  ##     ##    ##     ## ##     ## ##     ##   ## ##   ##  ##  ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t##  ##  ##  ##     ##    ##     ## ##     ## ##     ##  ##   ##  ##  ##  ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t##  ##  ##  ##     ##    ######### ##     ## ########  ##     ## ##  ##  ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t##  ##  ##  ##     ##    ##     ## ##     ## ##   ##   ######### ##  ##  ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t##  ##  ##  ##     ##    ##     ## ##     ## ##    ##  ##     ## ##  ##  ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t ###  ###  ####    ##    ##     ## ########  ##     ## ##     ##  ###  ###  "<<endl<<endl<<endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
 	print_text("ENTER AMOUNT OF MONEY","\t");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
@@ -588,7 +662,7 @@ void withdraw(){string s="";
 		}
 	
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
-		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
 		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
 		
@@ -607,15 +681,15 @@ void withdraw(){string s="";
 }
 void transfer(){
 	string s="",acc_no="";
-	while(true){system("cls");
+	while(true){system("cls");cout<<"\n\n";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
-	cout<<"######## ########     ###    ##    ##  ######  ######## ######## ########  "<<endl;
-	cout<<"   ##    ##     ##   ## ##   ###   ## ##    ## ##       ##       ##     ## "<<endl;
-	cout<<"   ##    ##     ##  ##   ##  ####  ## ##       ##       ##       ##     ## "<<endl;
-	cout<<"   ##    ########  ##     ## ## ## ##  ######  ######   ######   ########  "<<endl;
-	cout<<"   ##    ##   ##   ######### ##  ####       ## ##       ##       ##   ##   "<<endl;
-	cout<<"   ##    ##    ##  ##     ## ##   ### ##    ## ##       ##       ##    ##  "<<endl;
-	cout<<"   ##    ##     ## ##     ## ##    ##  ######  ##       ######## ##     ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t######## ########     ###    ##    ##  ######  ######## ######## ########  "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##     ##   ## ##   ###   ## ##    ## ##       ##       ##     ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##     ##  ##   ##  ####  ## ##       ##       ##       ##     ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ########  ##     ## ## ## ##  ######  ######   ######   ########  "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##   ##   ######### ##  ####       ## ##       ##       ##   ##   "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##    ##  ##     ## ##   ### ##    ## ##       ##       ##    ##  "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##     ## ##     ## ##    ##  ######  ##       ######## ##     ## "<<endl<<endl<<endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
 	print_text("ENTER PAYEE ACC. NO.","\t");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
@@ -686,7 +760,7 @@ void transfer(){
 	
 	
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
-		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
 		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
 		
@@ -698,14 +772,14 @@ void transfer(){
 		}
 	}
 	while(::page=="pin"){system("cls");
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
-	cout<<"######## ########     ###    ##    ##  ######  ######## ######## ########  "<<endl;
-	cout<<"   ##    ##     ##   ## ##   ###   ## ##    ## ##       ##       ##     ## "<<endl;
-	cout<<"   ##    ##     ##  ##   ##  ####  ## ##       ##       ##       ##     ## "<<endl;
-	cout<<"   ##    ########  ##     ## ## ## ##  ######  ######   ######   ########  "<<endl;
-	cout<<"   ##    ##   ##   ######### ##  ####       ## ##       ##       ##   ##   "<<endl;
-	cout<<"   ##    ##    ##  ##     ## ##   ### ##    ## ##       ##       ##    ##  "<<endl;
-	cout<<"   ##    ##     ## ##     ## ##    ##  ######  ##       ######## ##     ## "<<endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);cout<<"\n\n";
+	cout<<"\t\t\t\t\t\t\t######## ########     ###    ##    ##  ######  ######## ######## ########  "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##     ##   ## ##   ###   ## ##    ## ##       ##       ##     ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##     ##  ##   ##  ####  ## ##       ##       ##       ##     ## "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ########  ##     ## ## ## ##  ######  ######   ######   ########  "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##   ##   ######### ##  ####       ## ##       ##       ##   ##   "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##    ##  ##     ## ##   ### ##    ## ##       ##       ##    ##  "<<endl;
+	cout<<"\t\t\t\t\t\t\t   ##    ##     ## ##     ## ##    ##  ######  ##       ######## ##     ## "<<endl<<endl<<endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
 			print_text("ENTER AMOUNT OF MONEY","\t");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
@@ -772,7 +846,7 @@ void transfer(){
 		
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
-		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__ .__..___._..   .___\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__)|  |[__  | |   [__ \n");
 		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |   |  \\|__||   _|_|___[___\n");
 		
@@ -786,8 +860,8 @@ void transfer(){
 }
 
 void print_deposit(int w){
-	char a=219;
-	cout<<"     ____  _____ _____ _____ _____ _____ _____ "<<endl;
+	char a=219;cout<<"\t\t\t";
+	cout<<"     ____  _____ _____ _____ _____ _____ _____ "<<endl;cout<<"\t\t\t";
 	for(int i=0;i<2;i++){
 		if(w==0){
 			cout<<a;
@@ -795,7 +869,7 @@ void print_deposit(int w){
 			cout<<" ";
 		}
 	}cout<<"  ";
-	cout<<"|    \\|   __|  _  |     |   __|     |_   _|"<<endl;
+	cout<<"|    \\|   __|  _  |     |   __|     |_   _|"<<endl;cout<<"\t\t\t";
 	cout<<" ";
 	for(int i=0;i<2;i++){
 		if(w==0){
@@ -804,7 +878,7 @@ void print_deposit(int w){
 			cout<<" ";
 		}
 	}cout<<" ";
-	cout<<"|  |  |   __|   __|  |  |__   |-   -| | |  "<<endl;
+	cout<<"|  |  |   __|   __|  |  |__   |-   -| | |  "<<endl;cout<<"\t\t\t";
 	for(int i=0;i<2;i++){
 		if(w==0){
 			cout<<a;
@@ -816,7 +890,8 @@ void print_deposit(int w){
 }
 void print_withdraw(int w){
 	char a=219;
-	cout<<"     _ _ _ _____ _____ _____ ____  _____ _____ _ _ _ "<<endl;
+	cout<<"\t\t\t";
+	cout<<"     _ _ _ _____ _____ _____ ____  _____ _____ _ _ _ "<<endl;cout<<"\t\t\t";
 	for(int i=0;i<2;i++){
 		if(w==1){
 			cout<<a;
@@ -824,7 +899,7 @@ void print_withdraw(int w){
 			cout<<" ";
 		}
 	}cout<<"  ";
-	cout<<"| | | |     |_   _|  |  |    \\| __  |  _  | | | |"<<endl;
+	cout<<"| | | |     |_   _|  |  |    \\| __  |  _  | | | |"<<endl;cout<<"\t\t\t";
 	cout<<" ";
 	for(int i=0;i<2;i++){
 		if(w==1){
@@ -833,7 +908,7 @@ void print_withdraw(int w){
 			cout<<" ";
 		}
 	}cout<<" ";
-	cout<<"| | | |-   -| | | |     |  |  |    -|     | | | |"<<endl;
+	cout<<"| | | |-   -| | | |     |  |  |    -|     | | | |"<<endl;cout<<"\t\t\t";
 	for(int i=0;i<2;i++){
 		if(w==1){
 			cout<<a;
@@ -844,8 +919,8 @@ void print_withdraw(int w){
 	cout<<"|_____|_____| |_| |__|__|____/|__|__|__|__|_____|"<<endl;
 }
 void print_transfer(int w){
-	char a=219;
-	cout<<"     _____ _____ _____ _____ _____ _____ _____ _____ "<<endl;
+	char a=219;cout<<"\t\t\t";
+	cout<<"     _____ _____ _____ _____ _____ _____ _____ _____ "<<endl;cout<<"\t\t\t";
 	for(int i=0;i<2;i++){
 		if(w==2){
 			cout<<a;
@@ -853,7 +928,7 @@ void print_transfer(int w){
 			cout<<" ";
 		}
 	}cout<<"  ";
-	cout<<"|_   _| __  |  _  |   | |   __|   __|   __| __  |"<<endl;
+	cout<<"|_   _| __  |  _  |   | |   __|   __|   __| __  |"<<endl;cout<<"\t\t\t";
 	cout<<" ";
 	for(int i=0;i<2;i++){
 		if(w==2){
@@ -862,7 +937,7 @@ void print_transfer(int w){
 			cout<<" ";
 		}
 	}cout<<" ";
-	cout<<"  | | |    -|     | | | |__   |   __|   __|    -|"<<endl;
+	cout<<"  | | |    -|     | | | |__   |   __|   __|    -|"<<endl;cout<<"\t\t\t";
 	for(int i=0;i<2;i++){
 		if(w==2){
 			cout<<a;
@@ -878,16 +953,23 @@ void profile(){
 	int pro_cur=0;
 	
 	while(true){system("cls");
+	cout<<"\n\n";
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
 		print_text("PROFILE","\t\t\t\t\t\t\t\t  ");
 	cout<<"\n\n";
 	string s=to_string(all_customers[::num].money);
 	
-		
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
+	
+	print_text_small("ACC. NO. "+all_customers[::num].id,"\t\t\t");
+	print_text_small("NAME     "+all_customers[::num].name,"\t\t\t");	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	cout<<endl;
+	print_text_small("AMOUNT OF MONEY","\t\t\t\t\t\t\t   ");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+	cout<<"\n\n";
 	print_money(s,"\t\t\t\t\t\t\t\t");
-	
-		
-	
+	//cout<<all_customers[::num].name;
 	if(GetAsyncKeyState(VK_UP) != 0){//Up State
 			if(pro_cur>0&&pro_cur<3){
 				pro_cur--;
@@ -910,14 +992,16 @@ void profile(){
 			}
 			
 		}
-		print_deposit(pro_cur);
-		print_withdraw(pro_cur);
-		print_transfer(pro_cur);
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+		cout<<"\n\n";
+		print_deposit(pro_cur);cout<<"\n";
+		print_withdraw(pro_cur);cout<<"\n";
+		print_transfer(pro_cur);cout<<"\n";
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
-		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .   .__..__   .__..  ..___.\n");
+		printf("\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .   .__..__   .__..  ..___.\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  |   |  |[ __  |  ||  |  | \n");
 		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  |___|__|[_./  |__||__|  |  \n");
 		
@@ -1261,7 +1345,7 @@ void main_menu(){
 		}
 }
 int main(){srand(time(0));
-	ifstream in("test_data.txt");
+	ifstream in(file_name);
 	string textline;
 	
 	
@@ -1306,10 +1390,13 @@ int main(){srand(time(0));
 		system("cls");		
 	}
 	
-	ofstream out("test_data.txt");
+	ofstream out(file_name);
 	for(int i=0;i<all_customers.size();i++){
 		out<<all_customers[i].id<<","<<all_customers[i].name<<","<<all_customers[i].pin<<","<<all_customers[i].money<<endl;
 	}
 	out.close();
-	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+	cout<<"\n\n\n\n\n\n";
+	print_text("THANK FOR USING","\t\t\t\t   ");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 }
