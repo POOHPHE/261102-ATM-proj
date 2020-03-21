@@ -13,7 +13,7 @@ struct People{
 	string pin;
 	long double money;
 };
-string file_name="bank_data.txt";
+string file_name="test_data.txt";
 vector<People> all_customers;  
 set<string> find_id;
 int num,num_transfer,state;
@@ -23,6 +23,7 @@ void update_data(){
 	for(int i=0;i<all_customers.size();i++){
 		out<<all_customers[i].id<<","<<all_customers[i].name<<","<<all_customers[i].pin<<","<<all_customers[i].money<<endl;
 	}
+	out.close();
 }
 void find_id_all(string,string);
 string create_otp(){//create otp
@@ -399,6 +400,190 @@ void otp_page(){
 		}
 	}
 	
+}
+void add_page(){
+	string acc_no="";
+	string type="ENTER YOUR ACCOUT NO.";
+	string acc_name="";
+	string *mode=&acc_no;
+	while(true){
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+	system("cls");
+	print_text(type,"\t\t\t\t\t\t\t\t  ");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	if(type=="ENTER YOUR ACCOUT NO."){
+		if(acc_no.size()<9){
+			if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			acc_no=acc_no+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			acc_no=acc_no+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			acc_no=acc_no+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			acc_no=acc_no+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			acc_no=acc_no+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			acc_no=acc_no+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			acc_no=acc_no+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			acc_no=acc_no+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			acc_no=acc_no+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			acc_no=acc_no+"9";
+		}
+		}
+	}
+	else if(type=="ENTER YOUR ACCOUT NAME"){
+		if(acc_name.size()<30){
+			if(GetAsyncKeyState(0x41) != 0){
+			acc_name=acc_no+"A";
+		}else
+		if(GetAsyncKeyState(0x42) != 0){
+			acc_name=acc_no+"B";
+		}else
+		if(GetAsyncKeyState(0x43) != 0){
+			acc_name=acc_no+"C";
+		}else
+		if(GetAsyncKeyState(0x44) != 0){
+			acc_name=acc_no+"D";
+		}else
+		if(GetAsyncKeyState(0x45) != 0){
+			acc_name=acc_no+"E";
+		}else
+		if(GetAsyncKeyState(0x46) != 0){
+			acc_name=acc_no+"F";
+		}else
+		if(GetAsyncKeyState(0x47) != 0){
+			acc_name=acc_no+"G";
+		}else
+		if(GetAsyncKeyState(0x48) != 0){
+			acc_name=acc_no+"H";
+		}else
+		if(GetAsyncKeyState(0x49) != 0){
+			acc_name=acc_no+"I";
+		}else
+		if(GetAsyncKeyState(0x4A) != 0){
+			acc_name=acc_no+"J";
+		}
+		if(GetAsyncKeyState(0x4B) != 0){
+			acc_name=acc_no+"K";
+		}else
+		if(GetAsyncKeyState(0x4C) != 0){
+			acc_name=acc_no+"L";
+		}else
+		if(GetAsyncKeyState(0x4D) != 0){
+			acc_name=acc_no+"M";
+		}else
+		if(GetAsyncKeyState(0x4E) != 0){
+			acc_name=acc_no+"N";
+		}else
+		if(GetAsyncKeyState(0x4F) != 0){
+			acc_name=acc_no+"O";
+		}else
+		if(GetAsyncKeyState(0x50) != 0){
+			acc_name=acc_no+"P";
+		}else
+		if(GetAsyncKeyState(0x51) != 0){
+			acc_name=acc_no+"Q";
+		}else
+		if(GetAsyncKeyState(0x52) != 0){
+			acc_name=acc_no+"R";
+		}else
+		if(GetAsyncKeyState(0x53) != 0){
+			acc_name=acc_no+"S";
+		}else
+		if(GetAsyncKeyState(0x54) != 0){
+			acc_name=acc_no+"T";
+		}else
+		if(GetAsyncKeyState(0x55) != 0){
+			acc_name=acc_no+"U";
+		}else
+		if(GetAsyncKeyState(0x56) != 0){
+			acc_name=acc_no+"V";
+		}else
+		if(GetAsyncKeyState(0x57) != 0){
+			acc_name=acc_no+"W";
+		}else
+		if(GetAsyncKeyState(0x58) != 0){
+			acc_name=acc_no+"X";
+		}else
+		if(GetAsyncKeyState(0x59) != 0){
+			acc_name=acc_no+"Y";
+		}else
+		if(GetAsyncKeyState(0x5A) != 0){
+			acc_name=acc_no+"Z";
+		}else
+		if(GetAsyncKeyState(0x20) != 0||GetAsyncKeyState(VK_SPACE) != 0){
+			acc_name=acc_no+" ";
+		}
+		else
+		if(GetAsyncKeyState(0xBE) != 0||GetAsyncKeyState(VK_OEM_PERIOD) != 0){
+			acc_name=acc_no+".";
+		}
+		}
+	}
+		
+		if(type=="ENTER YOUR ACCOUT NO."){
+			if(GetAsyncKeyState(VK_BACK) != 0&&acc_no.size()>0){
+			acc_no=acc_no.substr(0,acc_no.size()-1);
+		}
+		}
+		else if(type=="ENTER YOUR ACCOUT NAME"){
+			if(GetAsyncKeyState(VK_BACK) != 0&&acc_name.size()>0){
+			acc_name=acc_name.substr(0,acc_name.size()-1);
+		}
+	}
+		cout<<endl;
+		print_text(*mode,"\t\t\t\t\t\t  ");
+		
+		if(GetAsyncKeyState(VK_RETURN) != 0){
+			
+			for(int i=0;i<all_customers.size();i++){
+				
+				if(acc_no==all_customers[i].id){
+					
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+				print_text("THIS NUMBER HAVE USED","\t\t\t\t\t\t  ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+				string acc_no="";
+				break;
+				}
+				else if(acc_no<all_customers[i].id){
+					;
+				}
+				else if(acc_no>all_customers[i].id){
+					all_customers.insert(all_customers.begin()+i,{acc_no,"","",500});
+					
+					
+				}
+			}
+			
+		}
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="login";
+			break;
+}
+}
 }
 void pin_state(){
 	
@@ -1297,10 +1482,78 @@ string acc_no="";
 }
 }
 
-void regis(){//register page func()
+void regis(){
+	string acc_no="";	
+	while(true){
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+	system("cls");
+	print_text("REGISTER","\t\t\t\t\t\t\t\t  ");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
 	
+		if(acc_no.size()<9){
+			if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			acc_no=acc_no+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			acc_no=acc_no+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			acc_no=acc_no+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			acc_no=acc_no+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			acc_no=acc_no+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			acc_no=acc_no+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			acc_no=acc_no+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			acc_no=acc_no+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			acc_no=acc_no+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			acc_no=acc_no+"9";
+		}
+		}
+		
+		if(GetAsyncKeyState(VK_BACK) != 0&&acc_no.size()>0){
+			acc_no=acc_no.substr(0,acc_no.size()-1);
+		}
+		cout<<endl;
+		print_text(acc_no,"\t\t\t\t\t\t  ");
+			if(GetAsyncKeyState(VK_RETURN) != 0){
+			if(acc_no.size()==9){
+				::page="add_page";
+				break;
+			}
+		
+		}else{
+			cout<<"\n\n";
+		
+		
+		
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="main";
+			break;
+		}
 }
-
+}
+}
 void password(){//Enter password page func()
 	
 }
@@ -1322,6 +1575,10 @@ void main_menu(){
 			if(cursor==0){//Login
 			 ::page="login";
 			 break;
+			}
+			if(cursor==1){//regis
+			::page="register";
+				break;
 			}
 			if(cursor==2){//Exit
 			::end=1;
@@ -1366,6 +1623,7 @@ int main(){srand(time(0));
 		People input={a,b,c,mone};
 		all_customers.push_back(input);
 		find_id.insert(a);
+		
 	}in.close();
 	
 	while(::end!=1){
@@ -1385,6 +1643,15 @@ int main(){srand(time(0));
 			transfer();
 		}else if(page=="pin"){
 			pin_state();
+		}
+		else if(page=="register"){
+			regis();
+		}
+		else if(page=="add_page"){
+			add_page();
+		}
+		else if(page=="add_page2"){
+		;
 		}
 
 		system("cls");		
