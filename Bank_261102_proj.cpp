@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 int cursor=0;
 int end=0;
 string page="main";
@@ -401,47 +400,62 @@ void otp_page(){
 	}
 	
 }
-void add_page(){
+void regis(){
 	string acc_no="";
 	string type="ENTER YOUR ACCOUT NO.";
 	string acc_name="";
-	string *mode=&acc_no;
+	string *mode;
+	string acc_pass="";
+	int N=0;
+	int M=0;
+	int key=0;
 	while(true){
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
 	system("cls");
-	print_text(type,"\t\t\t\t\t\t\t\t  ");
+	print_text_small(type,"\t\t\t\t\t\t\t");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
-	if(type=="ENTER YOUR ACCOUT NO."){
-		if(acc_no.size()<9){
+	if(type=="ENTER YOUR ACCOUT NO." || type=="ENTER YOUR ACCOUT PASS"){
+		if(type=="ENTER YOUR ACCOUT NO."){
+			N=9;
+			M=acc_no.size();
+			mode=&acc_no;
+		}
+		else if(type=="ENTER YOUR ACCOUT PASS"){
+			N=6;
+			M=acc_pass.size();
+			mode=&acc_pass;
+		}
+		
+		if(M<N){
 			if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
-			acc_no=acc_no+"0";
+			*mode+="0";
 		}else
 		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
-			acc_no=acc_no+"1";
+			*mode+="1";
 		}else
 		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
-			acc_no=acc_no+"2";
+			*mode+="2";
 		}else
 		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
-			acc_no=acc_no+"3";
+			*mode+="3";
 		}else
 		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
-			acc_no=acc_no+"4";
+			*mode+="4";
 		}else
 		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
-			acc_no=acc_no+"5";
+			*mode+="5";
 		}else
 		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
-			acc_no=acc_no+"6";
+			*mode+="6";
 		}else
 		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
-			acc_no=acc_no+"7";
+			*mode+="7";
 		}else
 		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
-			acc_no=acc_no+"8";
+			*mode+="8";
 		}else
 		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
-			acc_no=acc_no+"9";
+			*mode+="9";
 		}
 		}
 	}
@@ -524,14 +538,15 @@ void add_page(){
 		}else
 		if(GetAsyncKeyState(0x5A) != 0){
 			acc_name=acc_no+"Z";
-		}else
-		if(GetAsyncKeyState(0x20) != 0||GetAsyncKeyState(VK_SPACE) != 0){
-			acc_name=acc_no+" ";
 		}
-		else
-		if(GetAsyncKeyState(0xBE) != 0||GetAsyncKeyState(VK_OEM_PERIOD) != 0){
-			acc_name=acc_no+".";
-		}
+		//else
+		//if(GetAsyncKeyState(0x20) != 0||GetAsyncKeyState(VK_SPACE) != 0){
+		//	acc_name=acc_no+" ";
+		//}
+		//else
+		//if(GetAsyncKeyState(0xBE) != 0||GetAsyncKeyState(VK_OEM_PERIOD) != 0){
+		//	acc_name=acc_no+".";
+		//}
 		}
 	}
 		
@@ -539,38 +554,59 @@ void add_page(){
 			if(GetAsyncKeyState(VK_BACK) != 0&&acc_no.size()>0){
 			acc_no=acc_no.substr(0,acc_no.size()-1);
 		}
+	}
+		else if(type=="ENTER YOUR ACCOUT PASS"){
+			if(GetAsyncKeyState(VK_BACK) != 0&&acc_pass.size()>0){
+			acc_pass=acc_pass.substr(0,acc_pass.size()-1);
 		}
+		}
+		
 		else if(type=="ENTER YOUR ACCOUT NAME"){
 			if(GetAsyncKeyState(VK_BACK) != 0&&acc_name.size()>0){
 			acc_name=acc_name.substr(0,acc_name.size()-1);
 		}
 	}
 		cout<<endl;
-		print_text(*mode,"\t\t\t\t\t\t  ");
+		print_text(*mode,"\t\t\t\t\t");
 		
 		if(GetAsyncKeyState(VK_RETURN) != 0){
 			
-			for(int i=0;i<all_customers.size();i++){
+			if(type=="ENTER YOUR ACCOUT NO."){
+				for(int i=0;i<all_customers.size();i++){
 				
 				if(acc_no==all_customers[i].id){
 					
-				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
-				print_text("THIS NUMBER HAVE USED","\t\t\t\t\t\t  ");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),2);
+				print_text_small("THIS NUMBER HAVE USED","\t\t\t\t\t\t  ");
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 				string acc_no="";
 				break;
 				}
-				else if(acc_no<all_customers[i].id){
-					;
+				
+				else if(stoi(acc_no)<stoi(all_customers[i].id)){
+				key=i;
+				type="ENTER YOUR ACCOUT NAME";
+				acc_name="";
+				break;
 				}
-				else if(acc_no>all_customers[i].id){
-					all_customers.insert(all_customers.begin()+i,{acc_no,"","",500});
-					
-					
-				}
+			else if(stoi(acc_no)>stoi(all_customers[i].id)){
+				key=i;
+			}
 			}
 			
-		}
+			}
+			else if(type=="ENTER YOUR ACCOUT PASS"){
+				all_customers.insert(all_customers.begin()+key,{acc_no,acc_name,acc_pass,500});
+				
+			}
+			else if(type=="ENTER YOUR ACCOUT NAME"){
+				type="ENTER YOUR ACCOUT PASS";
+				acc_pass="";
+			}
+			}
+			
+			
+		
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
 		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
@@ -580,11 +616,13 @@ void add_page(){
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 		system("pause");
 		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
-		::page="login";
+		::page="main";
 			break;
+		
+		}
 }
 }
-}
+
 void pin_state(){
 	
 	string s="";
@@ -773,7 +811,8 @@ void deposit(){string s="";
 	
 	}
 }
-void withdraw(){string s="";
+void withdraw(){
+	string s="";
 	while(true){system("cls");cout<<"\n\n";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
 	
@@ -1482,12 +1521,12 @@ string acc_no="";
 }
 }
 
-void regis(){
+void add_page(){
 	string acc_no="";	
 	while(true){
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
 	system("cls");
-	print_text("REGISTER","\t\t\t\t\t\t\t\t  ");
+	print_text_small("REGISTER","\t\t\t\t\t\t\t\t  ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
 	
 		if(acc_no.size()<9){
@@ -1539,7 +1578,7 @@ void regis(){
 		
 		
 		
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
 		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
 		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
 		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
@@ -1645,14 +1684,13 @@ int main(){srand(time(0));
 			pin_state();
 		}
 		else if(page=="register"){
+			
 			regis();
 		}
 		else if(page=="add_page"){
 			add_page();
 		}
-		else if(page=="add_page2"){
-		;
-		}
+	
 
 		system("cls");		
 	}
