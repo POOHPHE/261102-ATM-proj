@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+#include<windows.h>
+
+using namespace std;
+
+int main(){
+	
+	string acc_name="";
+	
+	while(acc_name.size()<24){
+		if(GetAsyncKeyState(0x41) != 0){
+			acc_name=acc_name+"A";
+		}else
+		if(GetAsyncKeyState(0x42) != 0){
+			acc_name=acc_name+"B";
+		}else
+		if(GetAsyncKeyState(0x43) != 0){
+			acc_name=acc_name+"C";
+		}else
+		if(GetAsyncKeyState(0x44) != 0){
+			acc_name=acc_name+"D";
+		}else
+		if(GetAsyncKeyState(0x45) != 0){
+			acc_name=acc_name+"E";
+		}else
+		if(GetAsyncKeyState(0x46) != 0){
+			acc_name=acc_name+"F";
+		}else
+		if(GetAsyncKeyState(0x47) != 0){
+			acc_name=acc_name+"G";
+		}else
+		if(GetAsyncKeyState(0x48) != 0){
+			acc_name=acc_name+"H";
+		}else
+		if(GetAsyncKeyState(0x49) != 0){
+			acc_name=acc_name+"I";
+		}else
+		if(GetAsyncKeyState(0x4A) != 0){
+			acc_name=acc_name+"J";
+		}
+		if(GetAsyncKeyState(0x4B) != 0){
+			acc_name=acc_name+"K";
+		}else
+		if(GetAsyncKeyState(0x4C) != 0){
+			acc_name=acc_name+"L";
+		}else
+		if(GetAsyncKeyState(0x4D) != 0){
+			acc_name=acc_name+"M";
+		}else
+		if(GetAsyncKeyState(0x4E) != 0){
+			acc_name=acc_name+"N";
+		}else
+		if(GetAsyncKeyState(0x4F) != 0){
+			acc_name=acc_name+"O";
+		}else
+		if(GetAsyncKeyState(0x50) != 0){
+			acc_name=acc_name+"P";
+		}else
+		if(GetAsyncKeyState(0x51) != 0){
+			acc_name=acc_name+"Q";
+		}else
+		if(GetAsyncKeyState(0x52) != 0){
+			acc_name=acc_name+"R";
+		}else
+		if(GetAsyncKeyState(0x53) != 0){
+			acc_name=acc_name+"S";
+		}else
+		if(GetAsyncKeyState(0x54) != 0){
+			acc_name=acc_name+"T";
+		}else
+		if(GetAsyncKeyState(0x55) != 0){
+			acc_name=acc_name+"U";
+		}else
+		if(GetAsyncKeyState(0x56) != 0){
+			acc_name=acc_name+"V";
+		}else
+		if(GetAsyncKeyState(0x57) != 0){
+			acc_name=acc_name+"W";
+		}else
+		if(GetAsyncKeyState(0x58) != 0){
+			acc_name=acc_name+"X";
+		}else
+		if(GetAsyncKeyState(0x59) != 0){
+			acc_name=acc_name+"Y";
+		}else
+		if(GetAsyncKeyState(0x5A) != 0){
+			acc_name=acc_name+"Z";
+		}
+	
+	}
+	cout<<acc_name;
+	return 0;
+}
