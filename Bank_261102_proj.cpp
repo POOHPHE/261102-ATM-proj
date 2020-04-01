@@ -16,6 +16,7 @@ struct People{
 string file_name="bank_data.txt";
 vector<People> all_customers;  
 set<string> find_id;
+set<string>::iterator del_id;
 int num,num_transfer,state;
 long double pin_mon;
 void update_data(){
@@ -472,15 +473,21 @@ void pin_state(){
 		}
 		if(GetAsyncKeyState(VK_RETURN) != 0){
 			if(s==all_customers[::num].pin){
-				if(state==0){
+				if(::state==0){
 					all_customers[::num].money+=pin_mon;
-				}else if(state==1){
+				}else if(::state==1){
 					all_customers[::num].money-=pin_mon;
-				}else{
+				}else if(::state==2){
 					all_customers[::num_transfer].money+=pin_mon;
 					all_customers[::num].money-=pin_mon;
 				}
 				::page="profile";
+				if(::state==4){
+					all_customers.erase(all_customers.begin()+::num);
+    				del_id=find_id.find(all_customers[::num].id);
+    				find_id.erase(del_id);
+    				::page="main";
+				}
 				break;
 			}else{
 				wrong=1;
@@ -566,7 +573,7 @@ void deposit(){string s="";
 				break;
 			}*/
 			::page="pin";
-			state=0;
+			::state=0;
 			break;
 		}
 	
@@ -646,7 +653,7 @@ void withdraw(){string s="";
 			pin_mon=strtold(s.c_str(),NULL);
 			if(pin_mon<all_customers[::num].money){
 				::page="pin";
-			state=1;
+			::state=1;
 			break;
 			}else{
 				cout<<".  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
@@ -681,6 +688,7 @@ void withdraw(){string s="";
 }
 }
 void transfer(){
+	
 	string s="",acc_no="";
 	while(true){system("cls");cout<<"\n\n";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
@@ -827,7 +835,7 @@ void transfer(){
 			pin_mon=strtold(s.c_str(),NULL);
 			if(pin_mon<all_customers[::num].money){
 				::page="pin";
-			state=3;
+			::state=2;
 			break;
 			}else{
 				cout<<".  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
@@ -948,7 +956,35 @@ void print_transfer(int w){
 	}cout<<"  ";
 	cout<<"  |_| |__|__|__|__|_|___|_____|__|  |_____|__|__|"<<endl;
 }
-
+void print_del(int w){
+	char a=219;cout<<"\t\t\t";
+	cout<<"     ___  ___ _    ___ _____ ___     _   ___ ___ "<<endl;cout<<"\t\t\t";
+	for(int i=0;i<2;i++){
+		if(w==3){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"|   \\| __| |  | __|_   _| __|   /_\\ / __/ __|  "<<endl;cout<<"\t\t\t";
+	cout<<" ";
+	for(int i=0;i<2;i++){
+		if(w==3){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<" ";
+	cout<<"| |) | _|| |__| _|  | | | _|   / _ \\ (_| (__ _ "<<endl;cout<<"\t\t\t";
+	for(int i=0;i<2;i++){
+		if(w==3){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"|___/|___|____|___| |_| |___| /_/ \\_\\___\\___(_)"<<endl;
+}
 
 void profile(){
 	int pro_cur=0;
@@ -972,33 +1008,38 @@ void profile(){
 	print_money(s,"\t\t\t\t\t\t\t\t");
 	//cout<<all_customers[::num].name;
 	if(GetAsyncKeyState(VK_UP) != 0){//Up State
-			if(pro_cur>0&&pro_cur<3){
+			if(pro_cur>0&&pro_cur<4){
 				pro_cur--;
 			}
 		}else if(GetAsyncKeyState(VK_DOWN) != 0){//Down State
-			if(pro_cur>=0&&pro_cur<2){
+			if(pro_cur>=0&&pro_cur<3){
 				pro_cur++;
 			}
 		}else	if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
-			if(pro_cur==0){//Login
+			if(pro_cur==0){
 			 ::page="deposit";
 			 break;
 			}else if(pro_cur==1){
 			::page="withdraw";
 			break;
 		}
-			else if(pro_cur==2){//Exit
+			else if(pro_cur==2){
 			::page="transfer";
 				break;
 			}
+			else if(pro_cur==3){
+			::page="pin";
+			::state=4;
 			
+				break;
+			}
 		}
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
 		cout<<"\n\n";
 		print_deposit(pro_cur);cout<<"\n";
 		print_withdraw(pro_cur);cout<<"\n";
 		print_transfer(pro_cur);cout<<"\n";
-		
+		print_del(pro_cur);cout<<"\n";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
@@ -1628,7 +1669,7 @@ int main(){srand(time(0));
 	
 	
 	
-	text_size(16);
+	
 	
 	string A[3]={"LOGIN","REGISTER","EXIT"};
 	//Main Menu
