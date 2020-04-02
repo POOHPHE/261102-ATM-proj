@@ -26,6 +26,11 @@ void update_data(){
 	}
 	out.close();
 }
+void update_mon_data(){
+	for(int i=0;i<all_customers.size();i++){
+		all_customers[i].money=all_customers[i].money*1.01;
+	}
+}
 void find_id_all(string,string);
 string create_otp(){//create otp
 	string otp="";
@@ -1193,7 +1198,7 @@ void print_exit(int w){
 			cout<<" ";
 			
 		}
-		if(w!=2){
+		if(w!=3){
 				a=' ';
 							}
 		if(i==1||i==3){
@@ -1235,7 +1240,61 @@ void print_exit(int w){
 	}
 }
 
+void print_interest(int w){
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
 
+	cout<<endl<<endl<<endl;
+	for(int i=0;i<4;i++){
+		cout<<"       ";
+		char a=219;
+			for(int j=0;j<11;j++){
+					cout<<" ";
+				}
+				for(int j=0;j<40;j++){
+			cout<<" ";
+			
+		}
+		if(w!=2){
+				a=' ';
+							}
+		if(i==1||i==3){
+				for(int j=0;j<6;j++){
+					cout<<" ";
+				}
+			for(int j=0;j<2;j++){
+				cout<<a;
+			}cout<<"   ";
+		
+		}else if(i==2){
+			
+				for(int j=0;j<7;j++){
+				cout<<" ";
+			}
+			for(int j=0;j<2;j++){
+				cout<<a;
+			}
+		cout<<"  ";
+		
+		}else{
+			for(int j=0;j<11;j++){
+				cout<<" ";
+			}
+		}char e=92;
+				if(i==0){
+					printf(" ___ _  _ _____ ___ ___ ___ ___ _____ \n");
+				}	
+				if(i==1){
+					printf("|_ _| \\| |_   _| __| _ \\ __/ __|_   _|\n",e,e);
+				}	
+				if(i==2){
+					printf(" | || .` | | | | _||   / _|\\__ \\ | |  \n"); 
+				}	
+				if(i==3){
+					printf("|___|_|\\_| |_| |___|_|_\\___|___/ |_|  \n",e,e);
+				}						
+		//cout<<exit[i]<<endl;
+	}
+}
 
 void text_size(int s){//change text size func()
 	CONSOLE_FONT_INFOEX cfi;
@@ -1624,12 +1683,12 @@ void main_menu(){
 		
 	
 	if(GetAsyncKeyState(VK_UP) != 0){//Up State
-			if(cursor>0&&cursor<3){
+			if(cursor>0&&cursor<4){
 				cursor--;
 			}
 		}else
 		if(GetAsyncKeyState(VK_DOWN) != 0){//Down State
-			if(cursor>=0&&cursor<2){
+			if(cursor>=0&&cursor<3){
 				cursor++;
 			}
 		}else
@@ -1638,13 +1697,17 @@ void main_menu(){
 			 ::page="login";
 			 break;
 			}
-			if(cursor==1){//Register
+			else if(cursor==1){//Register
 			::page="regis";
 				break;
 			}
-			if(cursor==2){//Exit
+			else if(cursor==3){//Exit
 			::end=1;
 				break;
+			}
+			else if(cursor==2){
+				update_mon_data();
+				update_data();
 			}
 			
 		}
@@ -1652,9 +1715,10 @@ void main_menu(){
 		print_login(cursor);
 		cout<<endl<<endl;
 		print_regis(cursor);
+		print_interest(cursor);
 		cout<<endl<<endl;
 		print_exit(cursor);
-		
+		cout<<endl<<endl;
 		
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
