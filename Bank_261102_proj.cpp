@@ -1241,7 +1241,7 @@ void print_exit(int w){
 }
 
 void print_interest(int w){
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),5);
 
 	cout<<endl<<endl<<endl;
 	for(int i=0;i<4;i++){
