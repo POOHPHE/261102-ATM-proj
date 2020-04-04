@@ -28,7 +28,7 @@ void update_data(){
 }
 void update_mon_data(){
 	for(int i=0;i<all_customers.size();i++){
-		all_customers[i].money=all_customers[i].money*1.01;
+		all_customers[i].money=all_customers[i].money*1.014;
 	}
 }
 void find_id_all(string,string);
