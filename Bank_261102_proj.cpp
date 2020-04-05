@@ -26,9 +26,27 @@ void update_data(){
 	}
 	out.close();
 }
+void history(string acc,string add)
+{	
+	string textline;
+	ifstream his(acc+".txt");
+	vector<string> n;
+	while(getline(his,textline))
+	{
+		n.push_back(textline);
+	}his.close();
+	ofstream hist(acc+".txt");
+	for(int i=0;i<n.size();i++){
+		hist<<n[i]<<endl;
+	}
+	hist<<add<<endl;
+	hist.close();
+	
+}
 void update_mon_data(){
 	for(int i=0;i<all_customers.size();i++){
 		all_customers[i].money=all_customers[i].money*1.014;
+		history(all_customers[i].id,"+"+to_string(all_customers[i].money*0.014));
 	}
 }
 void find_id_all(string,string);
@@ -480,11 +498,14 @@ void pin_state(){
 			if(s==all_customers[::num].pin){
 				if(::state==0){
 					all_customers[::num].money+=pin_mon;
+					history(all_customers[::num].id,"+"+to_string(pin_mon));
 				}else if(::state==1){
 					all_customers[::num].money-=pin_mon;
+					history(all_customers[::num].id,"-"+to_string(pin_mon));
 				}else if(::state==2){
 					all_customers[::num_transfer].money+=pin_mon;
 					all_customers[::num].money-=pin_mon;
+					history(all_customers[::num].id,"-"+to_string(pin_mon));
 				}
 				::page="profile";
 				if(::state==4){
@@ -961,9 +982,9 @@ void print_transfer(int w){
 	}cout<<"  ";
 	cout<<"  |_| |__|__|__|__|_|___|_____|__|  |_____|__|__|"<<endl;
 }
-void print_del(int w){
+void print_his(int w){
 	char a=219;cout<<"\t\t\t";
-	cout<<"     ___  ___ _    ___ _____ ___     _   ___ ___ "<<endl;cout<<"\t\t\t";
+	cout<<"     _  _ ___ ___ _____ ___  _____   __"<<endl;cout<<"\t\t\t";
 	for(int i=0;i<2;i++){
 		if(w==3){
 			cout<<a;
@@ -971,7 +992,7 @@ void print_del(int w){
 			cout<<" ";
 		}
 	}cout<<"  ";
-	cout<<"|   \\| __| |  | __|_   _| __|   /_\\ / __/ __|  "<<endl;cout<<"\t\t\t";
+	cout<<"| || |_ _/ __|_   _/ _ \\| _ \\ \\ / /"<<endl;cout<<"\t\t\t";
 	cout<<" ";
 	for(int i=0;i<2;i++){
 		if(w==3){
@@ -980,7 +1001,7 @@ void print_del(int w){
 			cout<<" ";
 		}
 	}cout<<" ";
-	cout<<"| |) | _|| |__| _|  | | | _|   / _ \\ (_| (__ _ "<<endl;cout<<"\t\t\t";
+	cout<<"| __ || |\\__ \\ | || (_) |   /\\ V / "<<endl;cout<<"\t\t\t";
 	for(int i=0;i<2;i++){
 		if(w==3){
 			cout<<a;
@@ -988,7 +1009,93 @@ void print_del(int w){
 			cout<<" ";
 		}
 	}cout<<"  ";
+	cout<<"|_||_|___|___/ |_| \\___/|_|_\\ |_|  "<<endl;
+}
+void print_del(int w){
+	char a=219;cout<<"\t\t\t";
+	cout<<"     ___  ___ _    ___ _____ ___     _   ___ ___ "<<endl;cout<<"\t\t\t";
+	for(int i=0;i<2;i++){
+		if(w==4){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"|   \\| __| |  | __|_   _| __|   /_\\ / __/ __|  "<<endl;cout<<"\t\t\t";
+	cout<<" ";
+	for(int i=0;i<2;i++){
+		if(w==4){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<" ";
+	cout<<"| |) | _|| |__| _|  | | | _|   / _ \\ (_| (__ _ "<<endl;cout<<"\t\t\t";
+	for(int i=0;i<2;i++){
+		if(w==4){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
 	cout<<"|___/|___|____|___| |_| |___| /_/ \\_\\___\\___(_)"<<endl;
+}
+
+void pro_his(){
+	string textline;
+	ifstream his(all_customers[::num].id+".txt");
+	vector<string> n;
+	while(getline(his,textline))
+	{
+		n.push_back(textline);
+	}his.close();
+	
+	while(true){
+		
+		system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+		cout<<"\n\n\n\t\t\t\t\t\t#     # ###  #####  ####### ####### ######  #     # "<<endl;
+		cout<<"\t\t\t\t\t\t#     #  #  #     #    #    #     # #     #  #   #  "<<endl;
+		cout<<"\t\t\t\t\t\t#     #  #  #          #    #     # #     #   # #   "<<endl;
+		cout<<"\t\t\t\t\t\t#######  #   #####     #    #     # ######     #    "<<endl;
+		cout<<"\t\t\t\t\t\t#     #  #        #    #    #     # #   #      #    "<<endl;
+		cout<<"\t\t\t\t\t\t#     #  #  #     #    #    #     # #    #     #    "<<endl;
+		cout<<"\t\t\t\t\t\t#     # ###  #####     #    ####### #     #    #    "<<endl<<endl<<endl;
+		
+		for(int i=0;i<n.size();i++){
+			if(n[i][0]=='+'){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+			}else{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+			}
+			cout<<"\t\t\t"<<n[i]<<endl;
+		}
+		if(n.size()==0){SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+			cout<<"\t\t\t"<<"You have no history.\n";
+		}
+		
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		
+		
+ 
+
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="profile";
+			break;
+		}
+	}
+	
+	
+	
+	
+	
+	
 }
 
 void profile(){
@@ -1013,11 +1120,11 @@ void profile(){
 	print_money(s,"\t\t\t\t\t\t");
 	//cout<<all_customers[::num].name;
 	if(GetAsyncKeyState(VK_UP) != 0){//Up State
-			if(pro_cur>0&&pro_cur<4){
+			if(pro_cur>0&&pro_cur<5){
 				pro_cur--;
 			}
 		}else if(GetAsyncKeyState(VK_DOWN) != 0){//Down State
-			if(pro_cur>=0&&pro_cur<3){
+			if(pro_cur>=0&&pro_cur<4){
 				pro_cur++;
 			}
 		}else	if(GetAsyncKeyState(VK_RETURN) != 0){//Enter State
@@ -1032,10 +1139,13 @@ void profile(){
 			::page="transfer";
 				break;
 			}
-			else if(pro_cur==3){
+			else if(pro_cur==4){
 			::page="pin";
 			::state=4;
 			
+				break;
+			}else if(pro_cur==3){
+				::page="his";
 				break;
 			}
 		}
@@ -1044,6 +1154,7 @@ void profile(){
 		print_deposit(pro_cur);cout<<"\n";
 		print_withdraw(pro_cur);cout<<"\n";
 		print_transfer(pro_cur);cout<<"\n";
+		print_his(pro_cur);cout<<"\n";
 		print_del(pro_cur);cout<<"\n";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 		
@@ -1771,6 +1882,8 @@ int main(){srand(time(0));
 			pin_state();
 		}else if(::page=="regis"){
 			regist();
+		}else if(::page=="his"){
+			pro_his();
 		}
 
 		system("cls");		
