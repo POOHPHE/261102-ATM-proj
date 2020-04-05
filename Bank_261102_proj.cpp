@@ -45,8 +45,9 @@ void history(string acc,string add)
 }
 void update_mon_data(){
 	for(int i=0;i<all_customers.size();i++){
+		history(all_customers[i].id,"+"+to_string(all_customers[i].money*0.014)+" From Interest [Money]--->"+to_string(all_customers[i].money*1.014));
 		all_customers[i].money=all_customers[i].money*1.014;
-		history(all_customers[i].id,"+"+to_string(all_customers[i].money*0.014));
+		
 	}
 }
 void find_id_all(string,string);
@@ -498,14 +499,14 @@ void pin_state(){
 			if(s==all_customers[::num].pin){
 				if(::state==0){
 					all_customers[::num].money+=pin_mon;
-					history(all_customers[::num].id,"+"+to_string(pin_mon));
+					history(all_customers[::num].id,"+"+to_string(pin_mon)+"   From Deposit [Money]---> "+to_string(all_customers[::num].money));
 				}else if(::state==1){
 					all_customers[::num].money-=pin_mon;
-					history(all_customers[::num].id,"-"+to_string(pin_mon));
+					history(all_customers[::num].id,"-"+to_string(pin_mon)+"   From Withdraw [Money]---> "+to_string(all_customers[::num].money));
 				}else if(::state==2){
 					all_customers[::num_transfer].money+=pin_mon;
 					all_customers[::num].money-=pin_mon;
-					history(all_customers[::num].id,"-"+to_string(pin_mon));
+					history(all_customers[::num].id,"-"+to_string(pin_mon)+"   From Transfer to "+all_customers[::num_transfer].id+" [Money]---> "+to_string(all_customers[::num].money));
 				}
 				::page="profile";
 				if(::state==4){
