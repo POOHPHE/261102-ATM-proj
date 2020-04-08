@@ -1066,8 +1066,8 @@ void four_connect(){
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
 	int cursor=0;
 	int turn=1;
-	bool check_col;
-	int win=0,round=0;
+	bool check_col=false;
+	int win=0;
 	int table[6][7];
 	
 	for(int i=0;i<6;i++){
@@ -1106,9 +1106,9 @@ void four_connect(){
 		}
 	}
 	turn=1;
-	round=0;
+	
 	cursor=0;
-	;
+	
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 	
 	
@@ -1119,7 +1119,7 @@ void four_connect(){
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
 		}else{
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
-			win=0;
+			
 		}
 		cout<<"\tPlayer "<<turn<<" turn"<<endl;
 		
@@ -1127,14 +1127,20 @@ void four_connect(){
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
 			cout<<"\n\tThis Column is Full.\n";
 		}
-		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),5);
+		printf("\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 		
 			system("pause");
 		
 		
 		check_col=false;
-		if(GetAsyncKeyState(VK_RIGHT) != 0){
+		if(win==1){
+			win=0;
+		}else{
+			if(GetAsyncKeyState(VK_RIGHT) != 0){
 			if(cursor < 6){
 				cursor++;
 			}
@@ -1151,12 +1157,14 @@ void four_connect(){
 				turn=1;
 			}
 			
-			round++;
-		}else if(GetAsyncKeyState(VK_SPACE) != 0){
+			
+		} 
+		}
+		
+		if(GetAsyncKeyState(VK_SPACE) != 0){
 			::page="minigame";
 			break;
 		}
-		
 		
 		
 	}
