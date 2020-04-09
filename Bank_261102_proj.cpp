@@ -1880,7 +1880,7 @@ void transfer(){
 	cout<<"\t\t\t\t\t\t\t   ##    ##    ##  ##     ## ##   ### ##    ## ##       ##       ##    ##  "<<endl;
 	cout<<"\t\t\t\t\t\t\t   ##    ##     ## ##     ## ##    ##  ######  ##       ######## ##     ## "<<endl<<endl<<endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
-			print_text("ENTER AMOUNT OF MONEY","\t");
+			print_text("ENTER MONEY AMOUNT","\t");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
 	if(s.size()<7){
 		if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
