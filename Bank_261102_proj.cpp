@@ -1269,9 +1269,23 @@ void mini_menu(){
 		print_adven(mini_cur);
 		cout<<endl;
 		print_4con(mini_cur);
+		
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),5);
+		printf("\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
 			system("pause");
 	}
+	
+	
+	
+	
+	
 	
 }
 
@@ -1746,9 +1760,9 @@ void withdraw(){string s="";
 			::state=1;
 			break;
 			}else{
-				cout<<".  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
-				cout<<"|\\ ||  |  |    [__ |\\ ||  ||  |[ __|__|  |\\/||  ||\\ |[__  \\./ "<<endl;
-				cout<<"| \\||__|  |    [___| \\||__||__|[_./|  |  |  ||__|| \\|[___  |  "<<endl;
+				cout<<"\t\t\t\t\t\t\t.  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
+				cout<<"\t\t\t\t\t\t\t|\\ ||  |  |    [__ |\\ ||  ||  |[ __|__|  |\\/||  ||\\ |[__  \\./ "<<endl;
+				cout<<"\t\t\t\t\t\t\t| \\||__|  |    [___| \\||__||__|[_./|  |  |  ||__|| \\|[___  |  "<<endl;
 				
 				
 				
@@ -1928,9 +1942,10 @@ void transfer(){
 			::state=2;
 			break;
 			}else{
-				cout<<".  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
-				cout<<"|\\ ||  |  |    [__ |\\ ||  ||  |[ __|__|  |\\/||  ||\\ |[__  \\./ "<<endl;
-				cout<<"| \\||__|  |    [___| \\||__||__|[_./|  |  |  ||__|| \\|[___  |  "<<endl;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),12);
+				cout<<"\t\t\t\t\t\t\t.  ..__..___.  .___.  ..__..  ..__ .  .  .  ..__..  ..___.   ,"<<endl;
+				cout<<"\t\t\t\t\t\t\t|\\ ||  |  |    [__ |\\ ||  ||  |[ __|__|  |\\/||  ||\\ |[__  \\./ "<<endl;
+				cout<<"\t\t\t\t\t\t\t| \\||__|  |    [___| \\||__||__|[_./|  |  |  ||__|| \\|[___  |  "<<endl;
 				
 				
 				
@@ -2676,6 +2691,8 @@ void regist(){//register page func()
 			acc_no=acc_no.substr(0,acc_no.size()-1);
 		}cout<<endl<<endl;
 			print_text(acc_no,"\t\t\t\t  ");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+			cout<<"Press Backspace to delete\n\n";
 			if(GetAsyncKeyState(VK_RETURN) != 0){
 			if(acc_no.size()==9){
 				if(find_id.count(acc_no)>0){
@@ -2686,9 +2703,8 @@ void regist(){//register page func()
 					break;
 				}
 			}
-		}else{SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
-			cout<<"Press Backspace to delete\n\n";
 		}
+		
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
 		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
