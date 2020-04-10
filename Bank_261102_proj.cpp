@@ -911,6 +911,220 @@ void mini_game_1(){
 	
 }
 
+void reset_tic(int map[][3])//reset map
+{
+	for(int i=0;i<3;i++){
+		map[i][0]=0;
+		map[i][1]=0;
+		map[i][2]=0;
+	}
+}
+
+int check_tic_win(int map[][3])
+{
+	int win=0;
+	
+	if( (map[0][0]==map[1][1]&&map[0][0]==map[2][2]&&map[0][0]!=0)  || (map[0][2]==map[1][1]&&map[0][2]==map[2][0]&&map[0][2]!=0))//cross
+	{
+		win=1;
+	}
+	if( (map[0][0]==map[0][1]&&map[0][0]==map[0][2]&&map[0][0]!=0) || (map[1][0]==map[1][1]&&map[1][0]==map[1][2]&&map[1][0]!=0) || (map[2][0]==map[2][1]&&map[2][0]==map[2][2]&&map[2][0]!=0) ){//hori
+		win=1;
+	}
+	if( (map[0][0]==map[1][0]&&map[0][0]==map[2][0]&&map[0][0]!=0) || (map[0][1]==map[1][1]&&map[0][1]==map[2][1]&&map[0][1]!=0) || (map[0][2]==map[1][2]&&map[0][2]==map[2][2]&&map[0][2]!=0) )//verti
+	{
+		win=1;
+	}
+	
+	return win;
+}
+
+void print_tic_map(int map[][3],int curX,int curY)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+	char c=219;
+	cout<<endl;
+	print_text("TICTACTOE","\t\t");
+	cout<<endl;
+	for(int j=0;j<3;j++)
+	{
+		printf("\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c);
+		for(int k=0;k<4;k++){
+			
+			cout<<"\t\t\t";
+			for(int i=0;i<3;i++){
+				if(map[j][i]==1&&k==0)
+				{SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+					cout<<"__  __";
+				}else if(map[j][i]==2&&k==1){
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+					cout<<c;
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+					 	cout<<" /  \\ ";
+				}else if(map[j][i]==2&&k==2){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+					 	cout<<"| () |";
+				}else if(map[j][i]==1&&k==1){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+					 	cout<<"\\ \\/ /";
+				}else if(map[j][i]==1&&k==2){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+					 	cout<<" >  < ";
+				}else if(map[j][i]==2&&k==0){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+					 	cout<<"  __  ";
+				}else if(map[j][i]==2&&k==3){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+					 	cout<<" \\__/ ";
+				}else if(map[j][i]==1&&k==3){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+					 	cout<<"/_/\\_\\";
+				}else if( i == curX && j == curY &&k==0){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+					 	cout<<" _||_ ";
+				}else if( i == curX & j == curY &&k==1){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+					 	cout<<"|_||_|";
+				}else if( i == curX && j == curY &&k==2){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+					 	cout<<"|_||_|";
+				}else if( i == curX && j == curY &&k==3){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+				cout<<c;
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+					 	cout<<"  ||  ";
+				}else{
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+					cout<<c<<"      ";
+				}
+			
+			}
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),15);
+			cout<<c<<endl;
+		}
+		
+		
+	}
+		printf("\t\t\t%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c\n",c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c);
+
+	
+	
+	
+}
+
+void tictactoe(){
+	int map[3][3];
+	int cur_x=0,cur_y=0;
+	int player=1;
+	bool check=false;
+	reset_tic(map);
+	
+	while(true){
+		
+		system("cls");
+		print_tic_map(map,cur_x,cur_y);
+		
+		
+		
+		if(check){
+			
+			cout<<"This space has been taken.";
+			check=false;
+		}
+		if(check_tic_win(map)){
+			if(player==1){
+				player=2;
+				}else if(player==2){
+				player=1;
+			}SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+			cout<<"The winner is player "<<player<<endl<<"Press Arrow to continue\n";
+			reset_tic(map);
+			player=1;
+		}else{
+			if(player==1){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+			}else{
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+			}
+			cout<<endl<<"Player "<<player<<"'s turn.\n";
+		}
+		
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),5);
+		printf("\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		
+		if(GetAsyncKeyState(VK_LEFT) != 0)//left
+		{
+			if(cur_x>0){
+				cur_x--;
+			}
+		}
+		else if(GetAsyncKeyState(VK_RIGHT) != 0)//right
+		{
+			if(cur_x<2){
+				cur_x++;
+			}
+		}
+		else if(GetAsyncKeyState(VK_UP) != 0)//up
+		{
+			if(cur_y>0){
+				cur_y--;
+			}
+		}
+		else if(GetAsyncKeyState(VK_DOWN) != 0)//down
+		{
+			if(cur_y<2){
+				cur_y++;
+			}
+		}
+		else if(GetAsyncKeyState(VK_RETURN) != 0)//press
+		{
+			if(map[cur_y][cur_x]==0){
+				map[cur_y][cur_x]=player;
+				if(player==1){
+				player=2;
+				}else if(player==2){
+				player=1;
+			}
+			}else{
+				check=true;
+			}
+			
+		}
+		else if(GetAsyncKeyState(VK_SPACE) != 0)//exit
+		{::page="minigame";
+			break;
+		}
+		
+		
+		
+	}
+	
+}
 
 void show_four_connect(int cur,int table[][7]){
 	
@@ -1233,6 +1447,36 @@ void print_4con(int w){
 	cout<<" \\___\\___/|_|\\_|_|\\_|___\\___| |_|   |_| "<<endl;
 }
 
+void print_tic(int w){
+	char a=219;cout<<"\t\t\t";
+	cout<<"     _____ ___ ___ _____ _   ___ _____ ___  ___ "<<endl;cout<<"\t\t\t";
+	for(int i=0;i<2;i++){
+		if(w==2){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"|_   _|_ _/ __|_   _/_\\ / __|_   _/ _ \\| __|"<<endl;cout<<"\t\t\t";
+	cout<<" ";
+	for(int i=0;i<2;i++){
+		if(w==2){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<" ";
+	cout<<"  | |  | | (__  | |/ _ \\ (__  | || (_) | _| "<<endl;cout<<"\t\t\t";
+	for(int i=0;i<2;i++){
+		if(w==2){
+			cout<<a;
+		}else{
+			cout<<" ";
+		}
+	}cout<<"  ";
+	cout<<"  |_| |___\\___| |_/_/ \\_\\___| |_| \\___/|___|"<<endl;
+}
+
 void mini_menu(){
 	int mini_cur=0;
 	
@@ -1240,7 +1484,7 @@ void mini_menu(){
 			system("cls");
 		
 		if(GetAsyncKeyState(VK_DOWN) != 0){
-			if(mini_cur < 1){
+			if(mini_cur < 2){
 				mini_cur++;
 			}
 		}else if(GetAsyncKeyState(VK_UP) != 0){
@@ -1253,6 +1497,9 @@ void mini_menu(){
 				break;
 			}else if(mini_cur==1){
 				::page="4congame";
+				break;
+			}else if(mini_cur==2){
+				::page="tictactoe";
 				break;
 			}
 			
@@ -1269,7 +1516,8 @@ void mini_menu(){
 		print_adven(mini_cur);
 		cout<<endl;
 		print_4con(mini_cur);
-		
+		cout<<endl;
+		print_tic(mini_cur);
 		
 		
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),5);
@@ -3031,6 +3279,8 @@ int main(){srand(time(0));
 			mini_game_1();
 		}else if(::page=="4congame"){
 			four_connect();
+		}else if(::page=="tictactoe"){
+			tictactoe();
 		}
 
 		system("cls");		
