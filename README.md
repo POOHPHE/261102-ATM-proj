@@ -1,4 +1,5 @@
 # 261102-ATM-proj
+Console properties - Font:Raster Fonts , Size:12*16
 โปรเจค261102/2562
 ฟังก์ชั่นทั่วไป
 -การเข้าสู่ระบบ
