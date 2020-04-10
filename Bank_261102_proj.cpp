@@ -1502,6 +1502,7 @@ void tictactoe() {
   int map[3][3];
   int cur_x = 0, cur_y = 0;
   int player = 1;
+  int round = 0;
   bool check = false;
   reset_tic(map);
 
@@ -1525,13 +1526,23 @@ void tictactoe() {
       cout << "The winner is player " << player << endl << "Press Arrow to continue\n";
       reset_tic(map);
       player = 1;
+      round = 0;
     } else {
-      if (player == 1) {
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+      if (round < 9) {
+
+        if (player == 1) {
+          SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+        } else {
+          SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
+        }
+        cout << endl << "Player " << player << "'s turn.\n";
       } else {
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+        cout << "Draw\n";
+        reset_tic(map);
+        player = 1;
+        round = 0;
       }
-      cout << endl << "Player " << player << "'s turn.\n";
     }
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 5);
@@ -1568,9 +1579,11 @@ void tictactoe() {
         map[cur_y][cur_x] = player;
         if (player == 1) {
           player = 2;
+
         } else if (player == 2) {
           player = 1;
         }
+        round++;
       } else {
         check = true;
       }
@@ -1680,7 +1693,7 @@ void show_four_connect(int cur, int table[][7]) {
 
 }
 
-void player_play(int p, int col, bool & check, int table[][7]) {
+void player_play(int p, int col, bool & check, int table[][7], int & y) {
 
   for (int i = 5; i >= 0; i--) {
     if (table[0][col] > 0) {
@@ -1690,6 +1703,7 @@ void player_play(int p, int col, bool & check, int table[][7]) {
     if (table[i][col] == 0) {
       table[i][col] = p;
       cout << table[i][col];
+      y = i;
       break;
     }
 
@@ -1697,29 +1711,92 @@ void player_play(int p, int col, bool & check, int table[][7]) {
 
 }
 
-int check_win(int table[][7]) //fuction that find a win player who first connect the 4 signal
-{
-  int check, win = 0;
-  for (int i = 0; i < 6; i++) {
-    for (int j = 0; j < 7; j++) {
-      if (table[i][j] != 0) {
-        check = table[i][j];
-        if (table[i][j] == table[i + 1][j] && table[i][j] == table[i + 2][j] && table[i][j] == table[i + 3][j]) //vertical
-        {
-          win = 1;
-        } else if (table[i][j] == table[i][j + 1] && table[i][j] == table[i][j + 2] && table[i][j] == table[i][j + 3]) //landscape
-        {
-          win = 1;
-        } else if (table[i][j] == table[i + 1][j - 1] && table[i][j] == table[i + 2][j - 2] && table[i][j] == table[i + 3][j - 3]) //diagonal(right)
-        {
-          win = 1;
-        } else if (table[i][j] == table[i + 1][j + 1] && table[i][j] == table[i + 2][j + 2] && table[i][j] == table[i + 3][j + 3]) //diagonal(left)
-        {
-          win = 1;
-        }
-      }
+int check_win_new(int x, int y, int table[][7], int p) {
+  int win = 0;
+  int check_left = 0, check_right = 0, check_left_up = 0, check_right_up = 0, check_left_down = 0, check_right_down = 0, check_up = 0, check_down = 0;
+  int point = 1;
+  int y_count = 1;
+  for (int i = x - 1; i >= 0; i--) { //Check Left
+    if (table[y][i] == p) {
+      check_left += 1;
+    } else {
+      break;
     }
   }
+  for (int i = x + 1; i < 7; i++) { //check right
+    if (table[y][i] == p) {
+      check_right += 1;
+    } else {
+      break;
+    }
+
+  }
+  for (int i = x + 1; i < 7 && y - y_count >= 0; i++) { //right up
+    if (table[y - y_count][i] == p) {
+      check_right_up += 1;
+      y_count++;
+    } else {
+      break;
+    }
+
+  }
+  for (int i = x - 1; i >= 0 && y - y_count >= 0; i--) { //left up
+    if (table[y - y_count][i] == p) {
+      check_left_up += 1;
+      y_count++;
+    } else {
+      break;
+    }
+
+  }
+
+  for (int i = x - 1; i >= 0 && y + y_count < 6; i--) { //left down
+    if (table[y + y_count][i] == p) {
+      check_left_down += 1;
+      y_count++;
+    } else {
+      break;
+    }
+
+  }
+
+  for (int i = x + 1; i < 7 && y + y_count < 6; i++) { //right down
+    if (table[y + y_count][i] == p) {
+      check_right_down += 1;
+      y_count++;
+    } else {
+      break;
+    }
+
+  }
+  for (int i = y + 1; i < 6; i++) { //Check down
+    if (table[i][x] == p) {
+      check_down += 1;
+    } else {
+      break;
+    }
+  }
+  for (int i = y - 1; i >= 0; i--) { //Check up
+    if (table[i][x] == p) {
+      check_down += 1;
+    } else {
+      break;
+    }
+  }
+
+  if (point + check_left + check_right >= 4) {
+    win = 1;
+  }
+  if (point + check_left_up + check_right_down >= 4) {
+    win = 1;
+  }
+  if (point + check_left_down + check_right_up >= 4) {
+    win = 1;
+  }
+  if (point + check_down + check_up >= 4) {
+    win = 1;
+  }
+
   return win;
 }
 
@@ -1730,7 +1807,7 @@ void four_connect() {
   bool check_col = false;
   int win = 0;
   int table[6][7];
-
+  int round = 0;
   for (int i = 0; i < 6; i++) {
     for (int j = 0; j < 7; j++) {
       table[i][j] = 0;
@@ -1739,7 +1816,7 @@ void four_connect() {
 
   while (true) {
 
-    win = check_win(table); //check the winner condition
+    //check the winner condition
 
     system("cls");
 
@@ -1766,7 +1843,19 @@ void four_connect() {
       cursor = 0;
 
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
-
+      round = 0;
+    } else if (round == 42) {
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+      cout << "\n\n\t\tDraw\n\t\tPress Arrow to continue." << endl;
+      turn = 1;
+      win = 0;
+      cursor = 0;
+      for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 7; j++) {
+          table[i][j] = 0;
+        }
+      }
+      SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
     }
     if (turn == 1 && win == 0) {
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
@@ -1803,12 +1892,15 @@ void four_connect() {
           cursor--;
         }
       } else if (GetAsyncKeyState(VK_RETURN) != 0) {
-        player_play(turn, cursor, check_col, table);
-
+        int y;
+        player_play(turn, cursor, check_col, table, y);
+        win = check_win_new(cursor, y, table, turn);
         if (turn == 1 && check_col == false) {
           turn = 2;
+          round++;
         } else if (turn == 2 && check_col == false) {
           turn = 1;
+          round++;
         }
 
       }
@@ -3489,7 +3581,7 @@ void regist() { //register page func()
       }
     } else {
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-      cout << "Press 0 to space name.\nPress 1 to check name\nPress Backspace to delete\n";
+      cout << "Press 0 to space name.\n\nPress 1 to check name\n\nPress Backspace to delete\n";
     }
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
