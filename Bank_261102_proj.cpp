@@ -1089,11 +1089,19 @@ void reset_map() {
 }
 void mini_game_1() {
   reset_map();
-
+  int oldLevel = 1;
   Hp = 100;
   //Map Starto
   while (true) {
     system("cls");
+    
+    if ( oldLevel < ::Level%10)
+    {
+    	reset_map();
+    	oldLevel = ::Level;
+	}
+    
+    
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
     print_text_small("Level " + to_string(Level), "\t\t\t\t\t\t\t\t");
     cout << endl;
