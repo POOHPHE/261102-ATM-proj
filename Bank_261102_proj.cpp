@@ -1117,7 +1117,7 @@ void mini_game_1() {
       cout << endl;
 
     }
-    cout << "Hp : " << Hp << "/" << MaxHp << endl;
+    cout << "Hp : " << Hp << "/" << MaxHp << endl << "Press Arrow To Move.\n";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
     printf("\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
     printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
@@ -1535,7 +1535,7 @@ void tictactoe() {
         } else {
           SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
         }
-        cout << endl << "Player " << player << "'s turn.\n";
+        cout << endl << "Player " << player << "'s turn.\nPress Arrow To Move.\nPress Enter To Place.\n";
       } else {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
         cout << "Draw\n";
@@ -1865,7 +1865,7 @@ void four_connect() {
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
 
     }
-    cout << "\tPlayer " << turn << " turn" << endl;
+    cout << "\tPlayer " << turn << " turn" << endl << "\tPress Enter To Place.\n\tPress Enter To Place.\n";
 
     if (check_col == true) {
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
