@@ -2363,6 +2363,7 @@ void pin_state() {
           all_customers[::num_transfer].money += pin_mon;
           all_customers[::num].money -= pin_mon;
           history(all_customers[::num].id, "-" + to_string(pin_mon) + "   From Transfer to " + all_customers[::num_transfer].id + " [Money]---> " + to_string(all_customers[::num].money));
+          history(all_customers[::num_transfer].id, "+" + to_string(pin_mon) + "   From Transfer from " + all_customers[::num].id + " [Money]---> " + to_string(all_customers[::num_transfer].money));
         }::page = "profile";
         if (::state == 4) {
           all_customers.erase(all_customers.begin() + ::num);
