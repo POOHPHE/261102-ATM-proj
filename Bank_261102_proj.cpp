@@ -1095,7 +1095,7 @@ void mini_game_1() {
   while (true) {
     system("cls");
     
-    if ( oldLevel < ::Level%10)
+    if ( oldLevel % 10 < ::Level)
     {
     	reset_map();
     	oldLevel = ::Level;
