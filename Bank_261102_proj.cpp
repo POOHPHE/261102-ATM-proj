@@ -3,7 +3,7 @@
 #include<windows.h>
 
 using namespace std;
-
+int j = 0;
 int cursor = 0;
 int end = 0;
 string page = "main";
@@ -13,7 +13,7 @@ struct People {
   string pin;
   long double money;
 };
-string file_name = "bank_data.txt";
+string file_name = "test_data.txt";
 vector < People > all_customers;
 set < string > find_id;
 set < string > ::iterator del_id;
@@ -3695,10 +3695,580 @@ void regist() { //register page func()
   }
 
 }
+void ID(){
+	string ID="";
+	while(1){
+	system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
+	print_text("ID","\t\t\t\t\t\t\t\t\t");
+	if(ID.size()<6){
+			if(GetAsyncKeyState(0x41) != 0){
+			ID=ID+"A";
+		}
+		else if(GetAsyncKeyState(0x42) != 0){
+			ID=ID+"B";
+		}
+		else if(GetAsyncKeyState(0x43) != 0){
+			ID=ID+"C";
+		}
+		else if(GetAsyncKeyState(0x44) != 0){
+			ID=ID+"D";
+		}
+		else if(GetAsyncKeyState(0x45) != 0){
+			ID=ID+"E";
+		}
+		else if(GetAsyncKeyState(0x46) != 0){
+			ID=ID+"F";
+		}
+		else if(GetAsyncKeyState(0x47) != 0){
+			ID=ID+"G";
+		}
+		else if(GetAsyncKeyState(0x48) != 0){
+			ID=ID+"H";
+		}
+		else if(GetAsyncKeyState(0x49) != 0){
+			ID=ID+"I";
+		}
+		else if(GetAsyncKeyState(0x4A) != 0){
+			ID=ID+"J";
+		}
+		else if(GetAsyncKeyState(0x4B) != 0){
+			ID=ID+"K";
+		}
+		else if(GetAsyncKeyState(0x4C) != 0){
+			ID=ID+"L";
+		}
+		else if(GetAsyncKeyState(0x4D) != 0){
+			ID=ID+"M";
+		}
+		else if(GetAsyncKeyState(0x4E) != 0){
+			ID=ID+"N";
+		}
+		else if(GetAsyncKeyState(0x4F) != 0){
+			ID=ID+"O";
+		}
+		else if(GetAsyncKeyState(0x50) != 0){
+			ID=ID+"P";
+		}
+		else if(GetAsyncKeyState(0x51) != 0){
+			ID=ID+"Q";
+		}
+		else if(GetAsyncKeyState(0x52) != 0){
+			ID=ID+"R";
+		}
+		else if(GetAsyncKeyState(0x53) != 0){
+			ID=ID+"S";
+		}
+		else if(GetAsyncKeyState(0x54) != 0){
+			ID=ID+"T";
+		}
+		else if(GetAsyncKeyState(0x55) != 0){
+			ID=ID+"U";
+		}
+		else if(GetAsyncKeyState(0x56) != 0){
+			ID=ID+"V";
+		}else if(GetAsyncKeyState(0x57) != 0){
+			ID=ID+"W";
+		}else if(GetAsyncKeyState(0x58) != 0){
+			ID=ID+"X";
+		}else if(GetAsyncKeyState(0x59) != 0){
+			ID=ID+"Y";
+		}else if(GetAsyncKeyState(0x5A) != 0){
+			ID=ID+"Z";
+		}else if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			ID=ID+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			ID=ID+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			ID=ID+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			ID=ID+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			ID=ID+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			ID=ID+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			ID=ID+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			ID=ID+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			ID=ID+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			ID=ID+"9";
+		}
+		}
+	if(GetAsyncKeyState(VK_BACK) != 0&&ID.size()>0){
+			ID=ID.substr(0,ID.size()-1);
+			
+		}
+		cout<<endl;
+		print_text(ID,"\t\t\t\t\t\t  ");
+		if(GetAsyncKeyState(VK_RETURN) != 0){
+		if(ID=="50RAEG"){
+			::page="Master ID";
+			break;
+		}
+			}
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="main";
+			break;
+		}
+			
+			
+	}
 
+}
+void spacial(){
+	string pass="";
+	while(1){
+	system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
+	print_text("Master","\t\t\t\t\t\t");
+	if(pass.size()<6){
+			if(GetAsyncKeyState(0x41) != 0){
+			pass=pass+"A";
+		}
+		else if(GetAsyncKeyState(0x42) != 0){
+			pass=pass+"B";
+		}
+		else if(GetAsyncKeyState(0x43) != 0){
+			pass=pass+"C";
+		}
+		else if(GetAsyncKeyState(0x44) != 0){
+			pass=pass+"D";
+		}
+		else if(GetAsyncKeyState(0x45) != 0){
+			pass=pass+"E";
+		}
+		else if(GetAsyncKeyState(0x46) != 0){
+			pass=pass+"F";
+		}
+		else if(GetAsyncKeyState(0x47) != 0){
+			pass=pass+"G";
+		}
+		else if(GetAsyncKeyState(0x48) != 0){
+			pass=pass+"H";
+		}
+		else if(GetAsyncKeyState(0x49) != 0){
+			pass=pass+"I";
+		}
+		else if(GetAsyncKeyState(0x4A) != 0){
+			pass=pass+"J";
+		}
+		else if(GetAsyncKeyState(0x4B) != 0){
+			pass=pass+"K";
+		}
+		else if(GetAsyncKeyState(0x4C) != 0){
+			pass=pass+"L";
+		}
+		else if(GetAsyncKeyState(0x4D) != 0){
+			pass=pass+"M";
+		}
+		else if(GetAsyncKeyState(0x4E) != 0){
+			pass=pass+"N";
+		}
+		else if(GetAsyncKeyState(0x4F) != 0){
+			pass=pass+"O";
+		}
+		else if(GetAsyncKeyState(0x50) != 0){
+			pass=pass+"P";
+		}
+		else if(GetAsyncKeyState(0x51) != 0){
+			pass=pass+"Q";
+		}
+		else if(GetAsyncKeyState(0x52) != 0){
+			pass=pass+"R";
+		}
+		else if(GetAsyncKeyState(0x53) != 0){
+			pass=pass+"S";
+		}
+		else if(GetAsyncKeyState(0x54) != 0){
+			pass=pass+"T";
+		}
+		else if(GetAsyncKeyState(0x55) != 0){
+			pass=pass+"U";
+		}
+		else if(GetAsyncKeyState(0x56) != 0){
+			pass=pass+"V";
+		}else if(GetAsyncKeyState(0x57) != 0){
+			pass=pass+"W";
+		}else if(GetAsyncKeyState(0x58) != 0){
+			pass=pass+"X";
+		}else if(GetAsyncKeyState(0x59) != 0){
+			pass=pass+"Y";
+		}else if(GetAsyncKeyState(0x5A) != 0){
+			pass=pass+"Z";
+		}else if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			pass=pass+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			pass=pass+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			pass=pass+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			pass=pass+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			pass=pass+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			pass=pass+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			pass=pass+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			pass=pass+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			pass=pass+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			pass=pass+"9";
+		}
+		}
+	if(GetAsyncKeyState(VK_BACK) != 0&&pass.size()>0){
+			pass=pass.substr(0,pass.size()-1);
+			
+		}
+		cout<<endl;
+		print_text(pass,"\t\t\t\t\t\t  ");
+		if(GetAsyncKeyState(VK_RETURN) != 0){
+		if(pass=="CPECMU"){
+			::page="ID";
+			break;
+		}
+		else{
+			pass="";
+		}
+			}
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="main";
+			break;
+		}
+			
+			
+	}
+
+	
+	
+}
+void Master_ID(){
+	bool find = false;
+	string search="";
+	
+	while(1){
+		system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+		print_text("Search with ID","\t\t\t\t");
+	if(search.size()<9){
+			if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			search=search+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			search=search+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			search=search+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			search=search+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			search=search+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			search=search+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			search=search+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			search=search+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			search=search+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			search=search+"9";
+		}
+		}
+		if(GetAsyncKeyState(VK_BACK) != 0 && search.size()>0){
+			search=search.substr(0,search.size()-1);
+		}
+		if(GetAsyncKeyState(VK_RETURN) != 0 && search.size() == 9){
+			for(int i=0;i<all_customers.size();i++){
+					if(search==all_customers[i].id){
+						::j=i;
+						find = true;
+						break;
+					}
+				}
+			if(find==true){
+				::page = "Show ID";
+				break;
+			}
+		
+			}
+		cout<<endl;
+		print_text(search,"\t\t\t\t\t\t  ");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="main";
+			break;
+		}
+				
+	}
+}
+void Show_ID(){
+	bool delate = false;
+	string pass="";
+	while(true){system("cls");
+	cout<<"\n\n";
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		print_text(all_customers[::j].id,"\t\t\t\t\t\t\t\t  ");
+	cout<<"\n\n";
+	string s=to_string(all_customers[::j].money);
+	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),9);
+	
+	print_text_small("NAME     "+all_customers[::j].name,"\t\t\t");	
+	print_text_small("ACC. PIN "+all_customers[::j].pin,"\t\t\t");
+	
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),14);
+	cout<<endl;
+	print_text_small("AMOUNT OF MONEY","\t\t\t\t\t\t\t   ");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),10);
+	cout<<"\n\n";
+	print_money(s,"\t\t\t\t\t\t\t\t");
+	cout<<endl;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+		print_text_small("Press Enter to clear account","\t");
+		if(GetAsyncKeyState(VK_RETURN) != 0){
+		while(1){
+			system("cls");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),11);
+			print_text_small("Print DELATE to clear account ","\t");
+		if(pass.size()<6){
+			if(GetAsyncKeyState(0x41) != 0){
+			pass=pass+"A";
+		}
+		else if(GetAsyncKeyState(0x42) != 0){
+			pass=pass+"B";
+		}
+		else if(GetAsyncKeyState(0x43) != 0){
+			pass=pass+"C";
+		}
+		else if(GetAsyncKeyState(0x44) != 0){
+			pass=pass+"D";
+		}
+		else if(GetAsyncKeyState(0x45) != 0){
+			pass=pass+"E";
+		}
+		else if(GetAsyncKeyState(0x46) != 0){
+			pass=pass+"F";
+		}
+		else if(GetAsyncKeyState(0x47) != 0){
+			pass=pass+"G";
+		}
+		else if(GetAsyncKeyState(0x48) != 0){
+			pass=pass+"H";
+		}
+		else if(GetAsyncKeyState(0x49) != 0){
+			pass=pass+"I";
+		}
+		else if(GetAsyncKeyState(0x4A) != 0){
+			pass=pass+"J";
+		}
+		else if(GetAsyncKeyState(0x4B) != 0){
+			pass=pass+"K";
+		}
+		else if(GetAsyncKeyState(0x4C) != 0){
+			pass=pass+"L";
+		}
+		else if(GetAsyncKeyState(0x4D) != 0){
+			pass=pass+"M";
+		}
+		else if(GetAsyncKeyState(0x4E) != 0){
+			pass=pass+"N";
+		}
+		else if(GetAsyncKeyState(0x4F) != 0){
+			pass=pass+"O";
+		}
+		else if(GetAsyncKeyState(0x50) != 0){
+			pass=pass+"P";
+		}
+		else if(GetAsyncKeyState(0x51) != 0){
+			pass=pass+"Q";
+		}
+		else if(GetAsyncKeyState(0x52) != 0){
+			pass=pass+"R";
+		}
+		else if(GetAsyncKeyState(0x53) != 0){
+			pass=pass+"S";
+		}
+		else if(GetAsyncKeyState(0x54) != 0){
+			pass=pass+"T";
+		}
+		else if(GetAsyncKeyState(0x55) != 0){
+			pass=pass+"U";
+		}
+		else if(GetAsyncKeyState(0x56) != 0){
+			pass=pass+"V";
+		}else if(GetAsyncKeyState(0x57) != 0){
+			pass=pass+"W";
+		}else if(GetAsyncKeyState(0x58) != 0){
+			pass=pass+"X";
+		}else if(GetAsyncKeyState(0x59) != 0){
+			pass=pass+"Y";
+		}else if(GetAsyncKeyState(0x5A) != 0){
+			pass=pass+"Z";
+		}else if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			pass=pass+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			pass=pass+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			pass=pass+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			pass=pass+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			pass=pass+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			pass=pass+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			pass=pass+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			pass=pass+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			pass=pass+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			pass=pass+"9";
+		}
+		}
+			if(GetAsyncKeyState(VK_BACK) != 0&&pass.size()>0){
+			pass=pass.substr(0,pass.size()-1);
+			
+		}
+		cout<<endl;
+		print_text(pass,"\t\t\t\t\t\t  ");
+		system("\n\n\n\n\n\npause");
+		
+		if(GetAsyncKeyState(VK_RETURN) != 0 && pass == "DELATE"){
+		
+		system("cls");
+		print_text_small(all_customers[::j].id + " has been delated","\t\t\t ");
+		all_customers.erase(all_customers.begin() + ::j);
+		pass="";
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		update_data();
+		system("cls");
+		::page="Master ID";
+		delate = true;
+			break;
+		
+		}
+	}
+	
+}
+	if(delate==true){
+		delate = false;
+		break;
+	}
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),13);
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
+		printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
+		printf("\t|   |  \\[___.__).__)  .__)|   |  |\\__.[___[__)|  ||  \\    |  |__|  [__)|  |\\__.|  \\\n");
+		
+		
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0);
+		system("pause");
+		if(GetAsyncKeyState(VK_SPACE) != 0){system("cls");
+		::page="Master ID";
+			break;
+		}
+
+	
+	}
+}
 void main_menu() {
+	string sp ="";
   while (true) {
-
+	if(sp.size()<6){
+			if(GetAsyncKeyState(0x30) != 0||GetAsyncKeyState(VK_NUMPAD0) != 0){
+			sp=sp+"0";
+		}else
+		if(GetAsyncKeyState(0x31) != 0||GetAsyncKeyState(VK_NUMPAD1) != 0){
+			sp=sp+"1";
+		}else
+		if(GetAsyncKeyState(0x32) != 0||GetAsyncKeyState(VK_NUMPAD2) != 0){
+			sp=sp+"2";
+		}else
+		if(GetAsyncKeyState(0x33) != 0||GetAsyncKeyState(VK_NUMPAD3) != 0){
+			sp=sp+"3";
+		}else
+		if(GetAsyncKeyState(0x34) != 0||GetAsyncKeyState(VK_NUMPAD4) != 0){
+			sp=sp+"4";
+		}else
+		if(GetAsyncKeyState(0x35) != 0||GetAsyncKeyState(VK_NUMPAD5) != 0){
+			sp=sp+"5";
+		}else
+		if(GetAsyncKeyState(0x36) != 0||GetAsyncKeyState(VK_NUMPAD6) != 0){
+			sp=sp+"6";
+		}else
+		if(GetAsyncKeyState(0x37) != 0||GetAsyncKeyState(VK_NUMPAD7) != 0){
+			sp=sp+"7";
+		}else
+		if(GetAsyncKeyState(0x38) != 0||GetAsyncKeyState(VK_NUMPAD8) != 0){
+			sp=sp+"8";
+		}else
+		if(GetAsyncKeyState(0x39) != 0||GetAsyncKeyState(VK_NUMPAD9) != 0){
+			sp=sp+"9";
+		}
+		}	
     if (GetAsyncKeyState(VK_UP) != 0) { //Up State
       if (cursor > 0 && cursor < 5) {
         cursor--;
@@ -3710,6 +4280,10 @@ void main_menu() {
       }
     } else
     if (GetAsyncKeyState(VK_RETURN) != 0) { //Enter State
+      if(sp=="787898"){
+			::page = "spacial";
+			break;
+		}	
       if (cursor == 0) { //Login
         ::page = "login";
         break;
@@ -3804,7 +4378,16 @@ int main() {
       four_connect();
     } else if (::page == "tictactoe") {
       tictactoe();
-    }
+    }else if(::page=="spacial"){
+			spacial();
+		}else if(::page=="ID"){
+			ID();
+		}else if(::page=="Master ID"){
+			Master_ID();
+		}
+		else if(::page=="Show ID"){
+			Show_ID();
+		}
 
     system("cls");
   }
