@@ -1125,7 +1125,7 @@ void mini_game_1() {
       cout << endl;
 
     }
-    cout << "Hp : " << Hp << "/" << MaxHp << endl << "Press Arrow To Move.\n* is enemy.\nH is heal.\n! is goal.\n";
+    cout << "Hp : " << Hp << "/" << MaxHp << endl << "Press Arrow To Move.\nP is player.\n* is enemy.\nH is heal.\n! is goal.\n";
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
     printf("\n\n\n\n\n\n\t.__ .__ .___ __. __.   __..__ .__. __ .___.__ .__..__   .___..__.  .__ .__. __ .  .\n");
     printf("\t[__)[__)[__ (__ (__   (__ [__)[__]/  `[__ [__)[__][__)    |  |  |  [__)[__]/  `|_/ \n");
