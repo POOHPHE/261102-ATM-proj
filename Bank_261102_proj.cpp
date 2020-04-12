@@ -13,7 +13,7 @@ struct People {
   string pin;
   long double money;
 };
-string file_name = "test_data.txt";
+string file_name = "bank_data.txt";
 vector < People > all_customers;
 set < string > find_id;
 set < string > ::iterator del_id;
@@ -1874,7 +1874,7 @@ void four_connect() {
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
 
     }
-    cout << "\tPlayer " << turn << " turn" << endl << "\tPress Enter To Place.\n\tPress Enter To Place.\n";
+    cout << "\tPlayer " << turn << " turn" << endl << "\tPress Enter To Place.\n";
 
     if (check_col == true) {
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
