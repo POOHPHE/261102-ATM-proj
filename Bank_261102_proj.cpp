@@ -3002,7 +3002,8 @@ void profile() {
         ::page = "transfer";
         break;
       } else if (pro_cur == 4) {
-        ::page = "pin";::state = 4;
+        ::page = "pin";
+		::state = 4;
 
         break;
       } else if (pro_cur == 3) {
