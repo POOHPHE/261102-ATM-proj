@@ -1,4 +1,4 @@
-		#include<bits/stdc++.h>
+#include<bits/stdc++.h>
 
 #include<windows.h>
 
@@ -2367,7 +2367,7 @@ void pin_state() {
           history(all_customers[::num_transfer].id, "+" + to_string(pin_mon) + "   From Transfer from " + all_customers[::num].id + " [Money]---> " + to_string(all_customers[::num_transfer].money));
         }::page = "profile";
         if (::state == 4) {
-          all_customers.erase(all_customers.begin() + ::num);
+          all_customers.erase(all_customers[::num] );
           del_id = find_id.find(all_customers[::num].id);
           find_id.erase(del_id);::page = "main";
           update_data();
