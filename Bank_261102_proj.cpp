@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+		#include<bits/stdc++.h>
 
 #include<windows.h>
 
@@ -2370,6 +2370,7 @@ void pin_state() {
           all_customers.erase(all_customers.begin() + ::num);
           del_id = find_id.find(all_customers[::num].id);
           find_id.erase(del_id);::page = "main";
+          update_data();
         }
         break;
       } else {
