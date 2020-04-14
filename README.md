@@ -1,6 +1,8 @@
 # 261102-ATM-proj
 Console properties - Font:Raster Fonts , Size:12*16 and add-std=c++11to compiler
 
+โปรดอ่านคู่มือก่อนใช้งานและโหลดไฟล์bank_dataเพื่อใช้งาน
+
 โปรเจค261102/2562
 ฟังก์ชั่นทั่วไป
 -การเข้าสู่ระบบ
